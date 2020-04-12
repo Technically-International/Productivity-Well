@@ -31,8 +31,8 @@ This app also allows users to connect with other users and show off how producti
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-* [x]~~User must be able to register a new account~~
-* [x]~~user must be able to sign in~~
+* [x] ~~User must be able to register a new account~~
+* [x] ~~user must be able to sign in~~
 * user can set the amount that should be deducted if target not met.(if they close the app before done)
 * user can set a timer
 * minimum 50 cents for money taken
