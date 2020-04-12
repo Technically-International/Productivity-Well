@@ -18,7 +18,7 @@ import com.parse.SignUpCallback;
 public class SignupActivity extends AppCompatActivity {
 
 
-    public static final String TAG = "LoginActivity";
+    public static final String TAG = "SignupActivity";
     private EditText etEmail;
     private EditText etUsername;
     private EditText etPassword;
@@ -39,7 +39,7 @@ public class SignupActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick login button");
+                Log.i(TAG, "onClick SignUp button");
                 String email = etEmail.getText().toString();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
@@ -59,7 +59,7 @@ public class SignupActivity extends AppCompatActivity {
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with login",e);
+                    Log.e(TAG, "Issue with signUp",e);
                     return;
 
                 }
