@@ -33,7 +33,6 @@ This app also allows users to connect with other users and show off how producti
 **Required Must-have Stories**
 * User must be able to register a new account
 * user must be able to sign in
-* user can link the app to paypal or bank
 * user can set the amount that should be deducted if target not met.(if they close the app before done)
 * user can set a timer
 * minimum 50 cents for money taken
