@@ -31,9 +31,8 @@ This app also allows users to connect with other users and show off how producti
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-* User must be able to register a new account
-* user must be able to sign in
-* user can link the app to paypal or bank
+* [x] ~~User must be able to register a new account~~
+* [x] ~~user must be able to sign in~~
 * user can set the amount that should be deducted if target not met.(if they close the app before done)
 * user can set a timer
 * minimum 50 cents for money taken
@@ -203,3 +202,9 @@ User
      ```
    - (Create/POST) Create a new username
    - (Create/POST) Create a new password for user
+   
+   ### User Runthroughs:
+   - Sign Up and Login Functionality
+   
+   
+<img src="https://imgur.com/IteW2Gy.gif" width=250><br>
