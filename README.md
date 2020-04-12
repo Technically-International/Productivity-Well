@@ -205,4 +205,6 @@ User
    
    ### User Runthroughs:
    - Sign Up and Login Functionality
-<img src="https://imgur.com/a/qJklL5n.gif" width=250><br>
+   
+   
+<img src="https://imgur.com/IteW2Gy.gif" width=250><br>
