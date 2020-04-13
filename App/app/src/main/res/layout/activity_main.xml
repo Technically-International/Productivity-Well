@@ -21,4 +21,5 @@ tools:context=".MainActivity">
     android:layout_alignParentBottom="true"
     app:menu="@menu/menu_bottom_navigation" />
 
+
 </RelativeLayout>
