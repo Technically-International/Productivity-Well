@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.timerFragment">
 
     <EditText
@@ -18,28 +19,63 @@
         android:layout_marginEnd="-3dp"
         android:hint="Enter Amount"
         android:textSize="24sp"
-        tools:text="Enter Amount" />
-
-    <EditText
-        android:id="@+id/etTimer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etAmount"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="68dp"
-        android:ems="10"
-        android:inputType="time" />
+        tools:text="Enter Amount"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/startBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etTimer"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="296dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="74dp"
         android:text="Start" />
+
+
+    <com.uzairiqbal.circulartimerview.CircularTimerView
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="-3dp"
+        android:layout_marginBottom="97dp"
+        app:backgroundColor="#0DA5B4"
+        app:backgroundWidth="8"
+        app:isClockwise="true"
+        app:maxValue="100"
+        app:prefix=""
+        app:progressBackgroundColor="#eee"
+        app:progressColor="#FFC107"
+        app:progressText=""
+        app:progressTextColor="#eee"
+        app:startingPoint="bottom"
+        app:suffix=" sec"
+        app:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/time"
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etAmount"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="171dp"
+        android:ems="10"
+        android:fontFamily="@font/catamaran_medium"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:text="Enter Time" />
+
 
 </RelativeLayout>
