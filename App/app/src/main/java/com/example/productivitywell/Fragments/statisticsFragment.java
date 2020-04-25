@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import com.example.productivitywell.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -42,6 +43,7 @@ import lecho.lib.hellocharts.view.LineChartView;
 import lecho.lib.hellocharts.view.PieChartView;
 
 
+//
 
 public class statisticsFragment extends Fragment {
 
@@ -62,7 +64,7 @@ public class statisticsFragment extends Fragment {
 
     }
 
-    int[] colorClassArray = new int[]{Color.LTGRAY,Color.BLUE, Color.CYAN,Color.DKGRAY,Color.GREEN,Color.MAGENTA, Color.RED};
+    int[] colorClassArray = new int[]{Color.LTGRAY,Color.BLUE, Color.CYAN,Color.DKGRAY,Color.GREEN};
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -77,8 +79,12 @@ public class statisticsFragment extends Fragment {
         BarData barData = new BarData();
         barData.addDataSet(barDataset1);
 
+        barChart.setDrawValueAboveBar(false);
         barChart.setData(barData);
         barChart.invalidate();
+
+        Legend legend = barChart.getLegend();
+        legend.setEnabled(false);
 
         PieChart pieChart = view.findViewById(R.id.mp_PieChart);
 
@@ -88,19 +94,20 @@ public class statisticsFragment extends Fragment {
         PieData pieData = new PieData(pieDataSet);
 
         pieChart.setData(pieData);
+        pieChart.getBackground();
+        pieChart.setDrawSliceText(false);
+        pieChart.setUsePercentValues(false);
         pieChart.invalidate();
     }
 
     private ArrayList<PieEntry> dataValues2() {
         ArrayList<PieEntry> dataVals = new ArrayList<>();
 
-        dataVals.add(new PieEntry(15,"Sun"));
-        dataVals.add(new PieEntry(15,"Mon"));
-        dataVals.add(new PieEntry(15,"Tue"));
-        dataVals.add(new PieEntry(15,"Wed"));
-        dataVals.add(new PieEntry(15,"Thu"));
-        dataVals.add(new PieEntry(15,"Fri"));
-        dataVals.add(new PieEntry(15,"Sat"));
+        dataVals.add(new PieEntry(10,"focus"));
+        dataVals.add(new PieEntry(5,"study"));
+        dataVals.add(new PieEntry(40,"sleep"));
+        dataVals.add(new PieEntry(25,"work"));
+        dataVals.add(new PieEntry(20,"other"));
 
         return dataVals;
     }
@@ -110,7 +117,11 @@ public class statisticsFragment extends Fragment {
         dataVals.add(new BarEntry(0,3));
         dataVals.add(new BarEntry(1,4));
         dataVals.add(new BarEntry(2,6));
-        dataVals.add(new BarEntry(3,11));
+        dataVals.add(new BarEntry(3,2));
+        dataVals.add(new BarEntry(4,6));
+        dataVals.add(new BarEntry(5,1));
+        dataVals.add(new BarEntry(6,4));
+        dataVals.add(new BarEntry(7,8));
         return dataVals;
     }
 }
