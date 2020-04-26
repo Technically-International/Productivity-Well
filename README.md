@@ -33,6 +33,9 @@ This app also allows users to connect with other users and show off how producti
 **Required Must-have Stories**
 * [x] ~~User must be able to register a new account~~
 * [x] ~~user must be able to sign in~~
+* [x] ~~Stats UI must have a pie and line chart~~
+* [x] ~~Main UI must be completed.~~
+* Settings page UI must be completed.
 * user can set the amount that should be deducted if target not met.(if they close the app before done)
 * user can set a timer
 * minimum 50 cents for money taken
@@ -208,3 +211,8 @@ User
    
    
 <img src="https://imgur.com/IteW2Gy.gif" width=250><br>
+
+-Main and Stats UI
+
+
+<img src="https://imgur.com/7PXzJZ7.gif" width=250><br>
