@@ -11,12 +11,12 @@
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/mp_PieChart"
         android:layout_width="match_parent"
-        android:layout_height="260dp" />
+        android:layout_height="291dp" />
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/mp_BarChart"
         android:layout_width="match_parent"
-        android:layout_height="227dp" />
+        android:layout_height="269dp" />
 
 
     <!--  <lecho.lib.hellocharts.view.PieChartView

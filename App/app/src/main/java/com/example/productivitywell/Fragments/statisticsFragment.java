@@ -68,17 +68,24 @@ public class statisticsFragment extends Fragment {
 
     }
 
-    int[] colorClassArray = new int[]{Color.LTGRAY,Color.BLUE, Color.CYAN,Color.DKGRAY,Color.GREEN};
 
-    String[] labels = new String[]{"Sun","Mon","Tues","Wed", "Thu","Fri","Sat"};
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
         BarChart barChart = view.findViewById(R.id.mp_BarChart);
+        addBarChart(barChart);
+
+        PieChart pieChart = view.findViewById(R.id.mp_PieChart);
+        addPieChart(pieChart);
+
+    }
 
 
+
+    public void addBarChart(BarChart barChart){
+        String[] labels = new String[]{"Sun","Mon","Tues","Wed", "Thu","Fri","Sat"};
 
         BarDataSet barDataset1 = new BarDataSet(dataValues1(), "Dataset 1");
 
@@ -97,12 +104,15 @@ public class statisticsFragment extends Fragment {
         xAxis.setGranularity(1);
         xAxis.setGranularityEnabled(true);
 
-        barChart.invalidate();
-
         Legend legend = barChart.getLegend();
         legend.setEnabled(false);
 
-        PieChart pieChart = view.findViewById(R.id.mp_PieChart);
+        barChart.invalidate();
+    }
+
+    public void addPieChart(PieChart pieChart){
+
+        int[] colorClassArray = new int[]{Color.LTGRAY,Color.BLUE, Color.CYAN,Color.DKGRAY,Color.GREEN};
 
         PieDataSet pieDataSet = new PieDataSet(dataValues2(),"");
         pieDataSet.setColors(colorClassArray);
@@ -115,8 +125,6 @@ public class statisticsFragment extends Fragment {
         pieChart.setUsePercentValues(false);
         pieChart.invalidate();
     }
-
-
 
     private ArrayList<PieEntry> dataValues2() {
         ArrayList<PieEntry> dataVals = new ArrayList<>();
