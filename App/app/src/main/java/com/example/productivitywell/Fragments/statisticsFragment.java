@@ -21,13 +21,17 @@ import android.view.MenuItem;
 import com.example.productivitywell.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,9 +70,11 @@ public class statisticsFragment extends Fragment {
 
     int[] colorClassArray = new int[]{Color.LTGRAY,Color.BLUE, Color.CYAN,Color.DKGRAY,Color.GREEN};
 
+    String[] labels = new String[]{"Sun","Mon","Tues","Wed", "Thu","Fri","Sat"};
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         BarChart barChart = view.findViewById(R.id.mp_BarChart);
 
@@ -81,6 +87,16 @@ public class statisticsFragment extends Fragment {
 
         barChart.setDrawValueAboveBar(false);
         barChart.setData(barData);
+        barChart.getAxisLeft().setDrawAxisLine(false);
+        barChart.getDescription().setEnabled(false);
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        xAxis.setCenterAxisLabels(false);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularity(1);
+        xAxis.setGranularityEnabled(true);
+
         barChart.invalidate();
 
         Legend legend = barChart.getLegend();
@@ -100,6 +116,8 @@ public class statisticsFragment extends Fragment {
         pieChart.invalidate();
     }
 
+
+
     private ArrayList<PieEntry> dataValues2() {
         ArrayList<PieEntry> dataVals = new ArrayList<>();
 
@@ -112,6 +130,7 @@ public class statisticsFragment extends Fragment {
         return dataVals;
     }
 
+
     private ArrayList<BarEntry> dataValues1() {
         ArrayList<BarEntry> dataVals = new ArrayList<>();
         dataVals.add(new BarEntry(0,3));
@@ -121,7 +140,6 @@ public class statisticsFragment extends Fragment {
         dataVals.add(new BarEntry(4,6));
         dataVals.add(new BarEntry(5,1));
         dataVals.add(new BarEntry(6,4));
-        dataVals.add(new BarEntry(7,8));
         return dataVals;
     }
 }
