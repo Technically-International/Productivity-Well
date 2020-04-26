@@ -19,6 +19,15 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.example.productivitywell.R;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +43,7 @@ import lecho.lib.hellocharts.view.LineChartView;
 import lecho.lib.hellocharts.view.PieChartView;
 
 
+//
 
 public class statisticsFragment extends Fragment {
 
@@ -54,37 +64,64 @@ public class statisticsFragment extends Fragment {
 
     }
 
+    int[] colorClassArray = new int[]{Color.LTGRAY,Color.BLUE, Color.CYAN,Color.DKGRAY,Color.GREEN};
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //Pie Chart test
-        PieChartView pieChartView = view.findViewById(R.id.chart);
-        List<SliceValue> pieData = new ArrayList<>();
-        pieData.add(new SliceValue(15, Color.BLUE));
-        pieData.add(new SliceValue(25, Color.GRAY));
-        pieData.add(new SliceValue(10, Color.RED));
-        pieData.add(new SliceValue(60, Color.MAGENTA));
-        PieChartData pieChartData = new PieChartData(pieData);
-        pieChartView.setPieChartData(pieChartData);
 
-        LineChartView lineChartView = view.findViewById(R.id.linechart);
-        List<PointValue> values = new ArrayList<PointValue>();
-        values.add(new PointValue(0, 2));
-        values.add(new PointValue(1, 4));
-        values.add(new PointValue(2, 3));
-        values.add(new PointValue(3, 4));
-
-        //In most cased you can call data model methods in builder-pattern-like manner.
-        Line line = new Line(values).setColor(Color.BLUE).setCubic(true);
-        List<Line> lines = new ArrayList<Line>();
-        lines.add(line);
-
-        LineChartData data = new LineChartData();
-        data.setLines(lines);
-        lineChartView.setLineChartData(data);
+        BarChart barChart = view.findViewById(R.id.mp_BarChart);
 
 
 
+        BarDataSet barDataset1 = new BarDataSet(dataValues1(), "Dataset 1");
+
+        BarData barData = new BarData();
+        barData.addDataSet(barDataset1);
+
+        barChart.setDrawValueAboveBar(false);
+        barChart.setData(barData);
+        barChart.invalidate();
+
+        Legend legend = barChart.getLegend();
+        legend.setEnabled(false);
+
+        PieChart pieChart = view.findViewById(R.id.mp_PieChart);
+
+        PieDataSet pieDataSet = new PieDataSet(dataValues2(),"");
+        pieDataSet.setColors(colorClassArray);
+
+        PieData pieData = new PieData(pieDataSet);
+
+        pieChart.setData(pieData);
+        pieChart.getBackground();
+        pieChart.setDrawSliceText(false);
+        pieChart.setUsePercentValues(false);
+        pieChart.invalidate();
     }
 
+    private ArrayList<PieEntry> dataValues2() {
+        ArrayList<PieEntry> dataVals = new ArrayList<>();
+
+        dataVals.add(new PieEntry(10,"focus"));
+        dataVals.add(new PieEntry(5,"study"));
+        dataVals.add(new PieEntry(40,"sleep"));
+        dataVals.add(new PieEntry(25,"work"));
+        dataVals.add(new PieEntry(20,"other"));
+
+        return dataVals;
+    }
+
+    private ArrayList<BarEntry> dataValues1() {
+        ArrayList<BarEntry> dataVals = new ArrayList<>();
+        dataVals.add(new BarEntry(0,3));
+        dataVals.add(new BarEntry(1,4));
+        dataVals.add(new BarEntry(2,6));
+        dataVals.add(new BarEntry(3,2));
+        dataVals.add(new BarEntry(4,6));
+        dataVals.add(new BarEntry(5,1));
+        dataVals.add(new BarEntry(6,4));
+        dataVals.add(new BarEntry(7,8));
+        return dataVals;
+    }
 }
