@@ -37,7 +37,7 @@ This app also allows users to connect with other users and show off how producti
 * [x] ~~Main UI must be completed.~~
 * Settings page UI must be completed.
 * user can set the amount that should be deducted if target not met.(if they close the app before done)
-* user can set a timer
+* [*] ~~ user can set a timer~~
 * minimum 50 cents for money taken
 
 **Optional Nice-to-have Stories**
