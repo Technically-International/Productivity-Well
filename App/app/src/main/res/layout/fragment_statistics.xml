@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Fragments.statisticsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="stats fragment" />
 
-</FrameLayout>
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/mp_PieChart"
+        android:layout_width="match_parent"
+        android:layout_height="291dp" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/mp_BarChart"
+        android:layout_width="match_parent"
+        android:layout_height="269dp" />
+
+
+    <!--  <lecho.lib.hellocharts.view.PieChartView
+          android:id="@+id/chart"
+          android:layout_width="match_parent"
+          android:layout_height="23dp"
+          android:layout_marginBottom="21dp" />
+
+      <lecho.lib.hellocharts.view.LineChartView
+          android:id="@+id/linechart"
+          android:layout_width="wrap_content"
+          android:layout_height="14dp"
+          android:layout_marginStart="0dp"
+          android:layout_marginBottom="14dp" />
+  -->
+</LinearLayout>
