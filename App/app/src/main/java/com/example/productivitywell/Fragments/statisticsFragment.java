@@ -37,12 +37,11 @@ import java.util.List;
 public class statisticsFragment extends Fragment {
     public static final String TAG = "Statistics Fragemnt";
 
-    public int focusTime =0;
+    public int focusTime;
     int studyTime;
     int sleepTime;
     int workTime;
     int other;
-    ArrayList<PieEntry> dataVals = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,13 +94,11 @@ public class statisticsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        queryStats(view);
 
 
-        BarChart barChart = view.findViewById(R.id.mp_BarChart);
-        addBarChart(barChart);
 
-        PieChart pieChart = view.findViewById(R.id.mp_PieChart);
-        addPieChart(pieChart);
+
 
     }
 
@@ -144,49 +141,21 @@ public class statisticsFragment extends Fragment {
         pieChart.setUsePercentValues(false);
         pieChart.invalidate();
     }
-        public void getData(){
 
-        }
+
 
 
 
 
     public ArrayList<PieEntry> dataValues2() {
-        ParseQuery <Statsdata> query = ParseQuery.getQuery(Statsdata.class);
-        query.findInBackground(new FindCallback<Statsdata>() {
-            @Override
 
-
-            public void done(List<Statsdata> datas, ParseException e) {
-                if (e != null){
-                    Log.e(TAG, " Issue with Login",e );
-                    return;
-                }
-                int num  = 1;
-                for (Statsdata data: datas){
-                    if (num <2) {
-                        dataVals.add(new PieEntry(2,"focus"));
-                        Log.i(TAG, "in the place" + data.getFocusTime());
-                        dataVals.add(new PieEntry(studyTime,"study"));
-                        dataVals.add(new PieEntry(sleepTime,"sleep"));
-                        dataVals.add(new PieEntry(workTime,"work"));
-                        dataVals.add(new PieEntry(other,"other"));
-                        focusTime = data.getFocusTime();
-
-//                  focusTime = data.getFocusTime();
-//                  sleepTime = data.getSleepTime();
-//                  studyTime = data.getStudyTime();
-//                  workTime = data.getWorkTime();
-//                  other = data.getOtherTime();
-
-                    }
-                    num +=1;
-
-                }
-
-            }
-
-        });
+        ArrayList<PieEntry> dataVals = new ArrayList<>();
+        dataVals.add(new PieEntry(focusTime,"focus"));
+        System.out.println(" in the fragment focus time is" + focusTime);
+        dataVals.add(new PieEntry(studyTime,"study"));
+        dataVals.add(new PieEntry(sleepTime,"sleep"));
+        dataVals.add(new PieEntry(workTime,"work"));
+        dataVals.add(new PieEntry(other,"other"));
     return dataVals;
     }
 
@@ -201,6 +170,43 @@ public class statisticsFragment extends Fragment {
         dataVals.add(new BarEntry(5,1));
         dataVals.add(new BarEntry(6,4));
         return dataVals;
+    }
+
+    public void queryStats(final View view) {
+        ParseQuery<Statsdata> query = ParseQuery.getQuery(Statsdata.class);
+        query.findInBackground(new FindCallback<Statsdata>() {
+            @Override
+            public void done(List<Statsdata> datas, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, " Issue with Login", e);
+                    return;
+                }
+                //statisticsFragment statisticsFragment = new statisticsFragment();
+
+                for (Statsdata data: datas){
+                    Log.e(TAG,"The message is " + data.getFocusTime());
+                    focusTime = data.getFocusTime();
+                    sleepTime = data.getSleepTime();
+                    studyTime = data.getStudyTime();
+                    workTime = data.getWorkTime();
+
+                    System.out.println("Focus time after update"+focusTime);
+                    BarChart barChart = view.findViewById(R.id.mp_BarChart);
+                    addBarChart(barChart);
+                    PieChart pieChart = view.findViewById(R.id.mp_PieChart);
+                    addPieChart(pieChart);
+
+
+
+                }
+
+
+            }
+
+        });
+
+
+
     }
 
 
