@@ -87,7 +87,7 @@ public class statisticsFragment extends Fragment {
     public void addBarChart(BarChart barChart){
         String[] labels = new String[]{"Sun","Mon","Tues","Wed", "Thu","Fri","Sat"};
 
-        BarDataSet barDataset1 = new BarDataSet(dataValues1(), "Dataset 1");
+        BarDataSet barDataset1 = new BarDataSet(barChartData(), "Dataset 1");
 
         BarData barData = new BarData();
         barData.addDataSet(barDataset1);
@@ -114,7 +114,7 @@ public class statisticsFragment extends Fragment {
 
         int[] colorClassArray = new int[]{Color.LTGRAY,Color.BLUE, Color.CYAN,Color.DKGRAY,Color.GREEN};
 
-        PieDataSet pieDataSet = new PieDataSet(dataValues2(),"");
+        PieDataSet pieDataSet = new PieDataSet(pieChartData(),"");
         pieDataSet.setColors(colorClassArray);
 
         PieData pieData = new PieData(pieDataSet);
@@ -126,7 +126,7 @@ public class statisticsFragment extends Fragment {
         pieChart.invalidate();
     }
 
-    private ArrayList<PieEntry> dataValues2() {
+    private ArrayList<PieEntry> pieChartData() {
         ArrayList<PieEntry> dataVals = new ArrayList<>();
 
         dataVals.add(new PieEntry(10,"focus"));
@@ -139,7 +139,7 @@ public class statisticsFragment extends Fragment {
     }
 
 
-    private ArrayList<BarEntry> dataValues1() {
+    private ArrayList<BarEntry> barChartData() {
         ArrayList<BarEntry> dataVals = new ArrayList<>();
         dataVals.add(new BarEntry(0,3));
         dataVals.add(new BarEntry(1,4));
