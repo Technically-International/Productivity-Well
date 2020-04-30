@@ -13,9 +13,7 @@ import com.example.productivitywell.Fragments.settingsFragment;
 import com.example.productivitywell.Fragments.statisticsFragment;
 import com.example.productivitywell.Fragments.timerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.uzairiqbal.circulartimerview.CircularTimerListener;
-import com.uzairiqbal.circulartimerview.CircularTimerView;
-import com.uzairiqbal.circulartimerview.TimeFormatEnum;
+
 
 public class MainActivity extends AppCompatActivity {
 
