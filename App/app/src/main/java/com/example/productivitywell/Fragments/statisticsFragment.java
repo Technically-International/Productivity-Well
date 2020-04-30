@@ -56,63 +56,20 @@ public class statisticsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
-
-//    public void queryStats(){
-//        ParseQuery <Statsdata> query = ParseQuery.getQuery(Statsdata.class);
-//        query.findInBackground(new FindCallback<Statsdata>() {
-//            @Override
-//            public void done(List<Statsdata> datas, ParseException e) {
-//                if (e != null){
-//                    Log.e(TAG, " Issue with Login",e );
-//                    return;
-//                }
-//                int num  = 1;
-//                for (Statsdata data: datas){
-//                    if (num <2) {
-//                        focusTime = data.getFocusTime();
-//                        Log.i(TAG, "heree" + focusTime);
-////                  focusTime = data.getFocusTime();
-////                  sleepTime = data.getSleepTime();
-////                  studyTime = data.getStudyTime();
-////                  workTime = data.getWorkTime();
-////                  other = data.getOtherTime();
-//                    }
-//                    num +=1;
-//
-//                }
-//            }
-//        });
-//
-//
-//    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
-
         return inflater.inflate(R.layout.fragment_statistics, container, false);
-
     }
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         queryStats(view);
-
-
-
-
-
     }
-
-
 
     public void addBarChart(BarChart barChart){
         String[] labels = new String[]{"Sun","Mon","Tues","Wed", "Thu","Fri","Sat"};
@@ -168,7 +125,6 @@ public class statisticsFragment extends Fragment {
         dataVals.add(new PieEntry(other,"other"));
     return dataVals;
     }
-
 
     public ArrayList<BarEntry> dataValues1() {
         ArrayList<BarEntry> dataVals = new ArrayList<>();
@@ -235,7 +191,6 @@ public class statisticsFragment extends Fragment {
                         addPieChart(pieChart);
                 }
                 System.out.println("this is sun time "+ sunTime);
-
 
             }
 

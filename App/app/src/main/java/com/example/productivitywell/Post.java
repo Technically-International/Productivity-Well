@@ -26,7 +26,6 @@ public class Post extends ParseObject {
     public String getWorkTime(){
         return getString(WORK_TIME);
     }
-
     public String getOtherTime(){
         return getString(OTHER_TIME);
     }
