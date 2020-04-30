@@ -26,6 +26,8 @@ import com.uzairiqbal.circulartimerview.TimeFormatEnum;
 
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+
 import static com.parse.Parse.getApplicationContext;
 
 /**
@@ -91,6 +93,7 @@ public class timerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         start(view);
+        Calendar cal = Calendar.getInstance();
 
     }
 
