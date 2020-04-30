@@ -29,19 +29,29 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //
 public class statisticsFragment extends Fragment {
     public static final String TAG = "Statistics Fragemnt";
-
     public int focusTime;
-    int studyTime;
-    int sleepTime;
-    int workTime;
-    int other;
+    public int studyTime;
+    public int sleepTime;
+    public int workTime;
+    public int other;
+
+    int sunTime;
+    int monTime;
+    int tueTime;
+    int wedTime;
+    int thuTime;
+    int friTime;
+    int satTime;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -162,18 +172,19 @@ public class statisticsFragment extends Fragment {
 
     public ArrayList<BarEntry> dataValues1() {
         ArrayList<BarEntry> dataVals = new ArrayList<>();
-        dataVals.add(new BarEntry(0,3));
-        dataVals.add(new BarEntry(1,4));
-        dataVals.add(new BarEntry(2,6));
-        dataVals.add(new BarEntry(3,2));
-        dataVals.add(new BarEntry(4,6));
-        dataVals.add(new BarEntry(5,1));
-        dataVals.add(new BarEntry(6,4));
+        dataVals.add(new BarEntry(0,sunTime));
+        dataVals.add(new BarEntry(1,monTime));
+        dataVals.add(new BarEntry(2,tueTime));
+        dataVals.add(new BarEntry(3,wedTime));
+        dataVals.add(new BarEntry(4,thuTime));
+        dataVals.add(new BarEntry(5,friTime));
+        dataVals.add(new BarEntry(6,satTime));
         return dataVals;
     }
 
     public void queryStats(final View view) {
         ParseQuery<Statsdata> query = ParseQuery.getQuery(Statsdata.class);
+        query.whereEqualTo(Statsdata.KEY_USER, ParseUser.getCurrentUser());
         query.findInBackground(new FindCallback<Statsdata>() {
             @Override
             public void done(List<Statsdata> datas, ParseException e) {
@@ -184,21 +195,46 @@ public class statisticsFragment extends Fragment {
                 //statisticsFragment statisticsFragment = new statisticsFragment();
 
                 for (Statsdata data: datas){
-                    Log.e(TAG,"The message is " + data.getFocusTime());
-                    focusTime = data.getFocusTime();
-                    sleepTime = data.getSleepTime();
-                    studyTime = data.getStudyTime();
-                    workTime = data.getWorkTime();
+                        Log.e(TAG,"The message is " + data.getFocusTime());
+                        focusTime = data.getFocusTime() + focusTime;
+                        sleepTime = data.getSleepTime() + sleepTime;
+                        studyTime = data.getStudyTime() + studyTime;
+                        other = data.getOtherTime() + other;
+                        workTime = data.getWorkTime() + workTime;
 
-                    System.out.println("Focus time after update"+focusTime);
-                    BarChart barChart = view.findViewById(R.id.mp_BarChart);
-                    addBarChart(barChart);
-                    PieChart pieChart = view.findViewById(R.id.mp_PieChart);
-                    addPieChart(pieChart);
+                        SimpleDateFormat sdf = new SimpleDateFormat("E");
+                        String DayOfWeek = sdf.format(data.gettDate());
 
+                        switch(DayOfWeek){
+                            case "Sun":
+                                monTime += data.getFocusTime() + data.getSleepTime() + data.getStudyTime() + data.getWorkTime();
+                                break;
+                            case "Mon":
+                                tueTime += data.getFocusTime() + data.getSleepTime() + data.getStudyTime() + data.getWorkTime();
+                                break;
+                            case "Tue":
+                                wedTime += data.getFocusTime() + data.getSleepTime() + data.getStudyTime() + data.getWorkTime();
+                                break;
+                            case "Wed":
+                                thuTime += data.getFocusTime() + data.getSleepTime() + data.getStudyTime() + data.getWorkTime();
+                                break;
+                            case "Thu":
+                                friTime += data.getFocusTime() + data.getSleepTime() + data.getStudyTime() + data.getWorkTime();
+                                break;
+                            case "Fri":
+                                satTime += data.getFocusTime() + data.getSleepTime() + data.getStudyTime() + data.getWorkTime();
+                                break;
+                            case "Sat":
+                                sunTime += data.getFocusTime() + data.getSleepTime() + data.getStudyTime() + data.getWorkTime();
+                                break;
+                        }
 
-
+                        BarChart barChart = view.findViewById(R.id.mp_BarChart);
+                        addBarChart(barChart);
+                        PieChart pieChart = view.findViewById(R.id.mp_PieChart);
+                        addPieChart(pieChart);
                 }
+                System.out.println("this is sun time "+ sunTime);
 
 
             }
@@ -208,8 +244,4 @@ public class statisticsFragment extends Fragment {
 
 
     }
-
-
-
-
 }
