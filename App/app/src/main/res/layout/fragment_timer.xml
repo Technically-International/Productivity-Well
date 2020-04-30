@@ -33,49 +33,42 @@
         android:text="Start" />
 
 
-    <com.uzairiqbal.circulartimerview.CircularTimerView
-        android:id="@+id/progress_circular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="149dp"
+        android:layout_height="42dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="-3dp"
-        android:layout_marginBottom="97dp"
-        app:backgroundColor="#0DA5B4"
-        app:backgroundWidth="8"
-        app:isClockwise="true"
-        app:maxValue="100"
-        app:prefix=""
-        app:progressBackgroundColor="#eee"
-        app:progressColor="#FFC107"
-        app:progressText=""
-        app:progressTextColor="#eee"
-        app:startingPoint="bottom"
-        app:suffix=" sec"
-        app:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/time"
-        android:layout_width="254dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etAmount"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="171dp"
-        android:ems="10"
-        android:fontFamily="@font/catamaran_medium"
+        android:layout_marginTop="231dp"
+        android:layout_marginEnd="84dp"
         android:gravity="center"
-        android:inputType="number"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        tools:text="Enter Time" />
+        android:textAlignment="gravity" />
+
+
+    <com.budiyev.android.circularprogressbar.CircularProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="297dp"
+        android:layout_height="301dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="138dp"
+        app:animateProgress="true"
+        app:backgroundStrokeColor="#B9B9CA"
+        app:backgroundStrokeWidth="1dp"
+        app:drawBackgroundStroke="true"
+        app:foregroundStrokeCap="butt"
+        app:foregroundStrokeColor="#2CBEA7"
+        app:foregroundStrokeWidth="5dp"
+        app:indeterminate="false"
+        app:indeterminateMinimumAngle="45"
+        app:indeterminateRotationAnimationDuration="1200"
+        app:indeterminateSweepAnimationDuration="600"
+        app:maximum="100"
+        app:progressAnimationDuration="100"
+        app:startAngle="270" />
 
 
 </RelativeLayout>

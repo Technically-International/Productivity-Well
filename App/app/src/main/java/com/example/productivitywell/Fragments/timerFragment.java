@@ -1,5 +1,7 @@
 package com.example.productivitywell.Fragments;
 
+import android.R.layout;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
@@ -7,17 +9,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.example.productivitywell.MainActivity;
 import com.example.productivitywell.R;
 import com.uzairiqbal.circulartimerview.CircularTimerListener;
@@ -27,6 +36,8 @@ import com.uzairiqbal.circulartimerview.TimeFormatEnum;
 import org.w3c.dom.Text;
 
 import java.util.Calendar;
+
+import java.util.concurrent.TimeUnit;
 
 import static com.parse.Parse.getApplicationContext;
 
@@ -46,7 +57,10 @@ public class timerFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private int time;
-
+    private TextView txtProgress;
+    private ProgressBar progressBar;
+    private int pStatus = 0;
+    private Handler handler = new Handler();
 
 
     public timerFragment() {
@@ -77,7 +91,7 @@ public class timerFragment extends Fragment {
         // load the animation
 
 
-        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,59 +107,89 @@ public class timerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         start(view);
-        Calendar cal = Calendar.getInstance();
 
     }
 
-    private void start(final View view){
+    private void start(final View view) {
+        //Spinner widget for user to select time
+        Spinner spinner = view.findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.times, R.layout.spinner_item);
+        adapter.setDropDownViewResource(layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                spinnerSelected(parentView, view, position, id);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+    }
+
+    public void spinnerSelected(AdapterView<?> parent, final View view, int position, long id) {
+        String time = parent.getItemAtPosition(position).toString();
+        final int time1 = Integer.parseInt(time);
+
+        System.out.println("here");
         final View startBtn = view.findViewById(R.id.startBtn);
-            startBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    findTime(view);
+        //listening for when user presses start after selecting time
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    findTime(view, time1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            });
-
-
+            }
+        });
     }
 
-    private  void findTime(View view){
-        final EditText time = view.findViewById(R.id.time);
-        final int timer = Integer.parseInt(time.getText().toString());
-        Button startBtn=view.findViewById(R.id.startBtn);
+
+    private void findTime(View view, int amtoftime) throws InterruptedException {
+        System.out.println("here");
+        Button startBtn = view.findViewById(R.id.startBtn);
+        Spinner spinner = view.findViewById((R.id.spinner));
         //Animation animFadeout = AnimationUtils.loadAnimation(getApplicationContext(),
-                //R.anim.fadeout);
+        //R.anim.fadeout);
         //animFadeout.setAnimationListener((Animation.AnimationListener) this);
-        time.setVisibility(View.VISIBLE);
+        spinner.setVisibility(View.VISIBLE);
         //time.startAnimation(animFadeout);
-        time.setVisibility(View.INVISIBLE);
+        spinner.setVisibility(View.INVISIBLE);
         startBtn.setVisibility(View.INVISIBLE);
-        Timer(timer, view);
+        Timer(amtoftime, view);
     }
 
-    private void Timer(int amtoftime, View view){
+    private void Timer(int amtoftime, View view) throws InterruptedException {
 
+        CircularProgressBar progressBar = view.findViewById(R.id.progress_bar);
+        //amtoftime=amtoftime*60;
+        float progressTime;
+        float currentTime=0;
+        float progress1;
+        progressBar.setProgress(20);
+        System.out.println("hereno111111w");
+        for(int i=0;i<=amtoftime; i++){
+            progress1=(currentTime/amtoftime)*100;
+            progressBar.setProgress(progress1);
+            System.out.println("herenow" + progress1);
+            TimeUnit.SECONDS.sleep(1);
+            currentTime++;
 
-        final CircularTimerView progressBar = view.findViewById(R.id.progress_circular);
-        progressBar.setProgress(0);
-
-        // To Initialize Timer
-        progressBar.setCircularTimerListener(new CircularTimerListener() {
-            @Override
-            public String updateDataOnTick(long remainingTimeInMs) {
-                return String.valueOf((int)Math.ceil((remainingTimeInMs / 1000.f)));
-            }
-
-            @Override
-            public void onTimerFinished() {
-                progressBar.setPrefix("");
-                progressBar.setSuffix("");
-                progressBar.setText("Time Up!");
-            }
-        }, amtoftime, TimeFormatEnum.MINUTES, 10);
-
-        // To start timer
-         progressBar.startTimer();
+        }
 
     }
 }
+
+
+
+
+
+
+
+
