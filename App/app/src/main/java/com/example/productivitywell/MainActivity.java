@@ -65,6 +65,26 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.action_timer);
     }
 
+    protected void queryUser() {
+        ParseQuery<User> query = ParseQuery.getQuery(User.class);
+        query.include(User.KEY_USER);
+        //query.setLimit(20);
+        //query.addDescendingOrder(Post.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<User>() {
+            @Override
+            public void done(List<User> user, ParseException e) {
+                if (e != null){
+                    Log.e(TAG,"issues with getting post", e);
+                    return;
+                }
+
+                for (User user : user){
+                    Log.i(TAG, "username" + user.getUsername() + ".user:" + user.getUser());
+                }
+            }
+        });
+    }
+
 
 }
 

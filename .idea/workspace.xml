@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0f5161b4-1f60-4f62-8fa2-c5cfbafe3853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/App/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/productivitywell/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/app/src/main/java/com/example/productivitywell/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/productivitywell/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/app/src/main/java/com/example/productivitywell/ParseApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/productivitywell/ParseApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/app/src/main/java/com/example/productivitywell/Post.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
