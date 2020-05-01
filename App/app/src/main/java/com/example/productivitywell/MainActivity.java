@@ -6,12 +6,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.productivitywell.Fragments.settingsFragment;
 import com.example.productivitywell.Fragments.statisticsFragment;
 import com.example.productivitywell.Fragments.timerFragment;
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.uzairiqbal.circulartimerview.CircularTimerListener;
+import com.uzairiqbal.circulartimerview.CircularTimerView;
+import com.uzairiqbal.circulartimerview.TimeFormatEnum;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -54,4 +64,23 @@ public class MainActivity extends AppCompatActivity {
         });
         bottomNavigationView.setSelectedItemId(R.id.action_timer);
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+//
+//                  focusTime = data.getFocusTime();
+//                  sleepTime = data.getSleepTime();
+//                  studyTime = data.getStudyTime();
+//                  workTime = data.getWorkTime();
+//                  other = data.getOtherTime();
