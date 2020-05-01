@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#93D3DC"
     tools:context=".Fragments.settingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="settings fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80"
+        android:clickable="false"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10"
+        android:clickable="false"
+        android:text="Settings"
+        android:textColor="#0F3563"
+        android:textSize="30" />
+
+    <TextView
+        android:id="@+id/username_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100"
+        android:layout_marginTop="240"
+        android:gravity="center"
+        android:text="Username"
+        android:textColor="#080F37"
+        android:textSize="20" />
+
+    <TextView
+        android:id="@+id/email_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="63"
+        android:layout_marginTop="280"
+        android:text="Email Address"
+        android:textColor="#080F37"
+        android:textSize="20" />
+
+    <TextView
+        android:id="@+id/password_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="103"
+        android:layout_marginTop="320"
+        android:text="Password"
+        android:textColor="#080F37"
+        android:textSize="20" />
+
+    <TextView
+        android:id="@+id/username_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="210"
+        android:layout_marginTop="240"
+        android:gravity="center"
+        android:text="Jenifidelia"
+        android:textColor="#3F51B5"
+        android:textSize="20" />
+
+    <TextView
+        android:id="@+id/email_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="210"
+        android:layout_marginTop="282"
+        android:gravity="center"
+        android:text="Jenifidelia"
+        android:textColor="#3F51B5"
+        android:textSize="15" />
+
+    <TextView
+        android:id="@+id/password_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="210"
+        android:layout_marginTop="320"
+        android:gravity="center"
+        android:text="Jenifidelia"
+        android:textColor="#3F51B5"
+        android:textSize="20" />
+
+    <Button
+        android:id="@+id/upload_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="upload" />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60"
+        android:text="submit" />
 
 </FrameLayout>

@@ -18,15 +18,31 @@ import com.example.productivitywell.R;
 public class settingsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+//    public static final String TAG= "SettingsFragment";
+//
+//    private static final String ARG_PARAM1 = "param1";
+//    private static final String ARG_PARAM2 = "param2";
+//
+//    // TODO: Rename and change types of parameters
+//    private String mParam1;
+//    private String mParam2;
+//
+//    public settingsFragment() {
+//        // Required empty public constructor
 
-    public settingsFragment() {
-        // Required empty public constructor
+    private TextView text_title;
+    private TextView username_heading;
+    private TextView username_content;
+    private TextView email_content;
+    private TextView email_heading;
+    private TextView password_heading;
+    private TextView password_content;
+    private AlertDialog dialog;
+    private Button submit_button;
+    private Button update_button;
+    private ImageView imageView;
+    private EditText editText;
     }
 
     /**
@@ -50,10 +66,25 @@ public class settingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        text_title = view.findViewById(R.id.text_title);
+        username_heading = view.findViewById(R.id.username_heading);
+        username_content = view.findViewById(R.id.username_content);
+        email_heading = view.findViewById(R.id.email_heading);
+        email_content = view.findViewById(R.id.email_content);
+        password_heading = view.findViewById(R.id.password_heading);
+        password_content = view.findViewById(R.id.password_content);
+        submit_button = view.findViewById(R.id.submit_button);
+        update_button = view.findViewById(R.id.update_button);
+        imageView = view.findViewById(R.id.imageView);
+        editText =view.findViewById(R.id.editText);
+
+
+
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
     }
 
     @Override
