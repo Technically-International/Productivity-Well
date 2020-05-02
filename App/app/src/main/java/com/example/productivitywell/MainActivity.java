@@ -18,9 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
-import com.uzairiqbal.circulartimerview.CircularTimerListener;
-import com.uzairiqbal.circulartimerview.CircularTimerView;
-import com.uzairiqbal.circulartimerview.TimeFormatEnum;
+
 
 import java.util.List;
 
@@ -63,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         bottomNavigationView.setSelectedItemId(R.id.action_timer);
+    }
+
+    @Override
+    public void onPause() {
+
+        super.onPause();
+        Toast.makeText(getApplicationContext(),"You are losing monies",Toast.LENGTH_SHORT).show();
     }
 }
 

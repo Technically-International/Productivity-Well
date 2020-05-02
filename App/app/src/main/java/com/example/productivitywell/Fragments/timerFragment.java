@@ -12,9 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.productivitywell.R;
@@ -27,11 +29,15 @@ import static com.parse.Parse.getApplicationContext;
 
 public class timerFragment extends Fragment {
 
-    long num = 5;
+    long time = 5;
+    long money=0;
     private CountDownTimer countDownTimer;
     private boolean timerRunning=false;
+    private boolean moneyEntered=false;
     private TextView countdownText;
     private Button startButton;
+    public EditText etAmount;
+
 
     public timerFragment() {
         // Required empty public constructor
@@ -54,11 +60,12 @@ public class timerFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final Circle circle =  view.findViewById(R.id.circle);
         countdownText = view.findViewById(R.id.countdownTimer);
         final NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
+
 
         //24 different selectable times from 5 to 120 minutes in 5 minute increments
         numberPicker.setMinValue(1);
@@ -70,7 +77,7 @@ public class timerFragment extends Fragment {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 //picker.setValue((newVal < oldVal)?oldVal-5:oldVal+5);
-                num = newVal*5;
+                time = newVal*5;
                 System.out.println("yo yo");
             }
         });
@@ -87,25 +94,40 @@ public class timerFragment extends Fragment {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                System.out.println(num);
 
             }
         }, 0, 1000);
 
-
+        etAmount=view.findViewById(R.id.etAmount);
+        etAmount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         startButton = view.findViewById(R.id.startBtn);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CircleAngleAnimation animation = new CircleAngleAnimation(circle, 360);
-                animation.setDuration(num*60000);
-                System.out.println(num+"this is time");
-                circle.startAnimation(animation);
-                numberPicker.setVisibility(numberPicker.GONE);
-                countdownText.setVisibility(countdownText.VISIBLE);
-                num=num*60000;
-                startStop();
+                String moneytext=etAmount.getText().toString();
+                System.out.println("you have eneterd"+moneytext);
+                money=Long.parseLong(moneytext);
+                if(money>=3) {
+                    CircleAngleAnimation animation = new CircleAngleAnimation(circle, 360);
+                    animation.setDuration(time * 60000);
+                    System.out.println(time + "this is time");
+                    circle.startAnimation(animation);
+                    numberPicker.setVisibility(numberPicker.GONE);
+                    countdownText.setVisibility(countdownText.VISIBLE);
+                    startButton.setVisibility(startButton.GONE);
+                    time = time * 60000;
+                    startStop();
+                }
+                else{
+
+                    Toast.makeText(getApplicationContext(),"Please enter the amount",Toast.LENGTH_SHORT).show();
+                    onViewCreated(view, savedInstanceState);
+                }
 
             }
         });
@@ -121,10 +143,10 @@ public class timerFragment extends Fragment {
     }
 
     public void startTimer() {
-    countDownTimer = new CountDownTimer(num, 1000) {
+    countDownTimer = new CountDownTimer(time, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
-            num = millisUntilFinished;
+            time = millisUntilFinished;
             updateTimer();
         }
 
@@ -141,8 +163,8 @@ public class timerFragment extends Fragment {
         timerRunning=false;
     }
     public void updateTimer(){
-        int minutes = (int)num/60000;
-        int seconds = (int)num%60000/1000;
+        int minutes = (int)time/60000;
+        int seconds = (int)time%60000/1000;
 
         String timeLeftText;
 
@@ -152,4 +174,6 @@ public class timerFragment extends Fragment {
         timeLeftText+=seconds;
         countdownText.setText(timeLeftText);
     }
+
+
 }
