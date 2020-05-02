@@ -6,14 +6,27 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.productivitywell.Fragments.settingsFragment;
 import com.example.productivitywell.Fragments.statisticsFragment;
 import com.example.productivitywell.Fragments.timerFragment;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,25 +83,37 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         if (fragTagger=="timer"){
             Toast.makeText(getApplicationContext(),"You are losing monies",Toast.LENGTH_SHORT).show();
-            System.out.print("This money to be removed"+money);
+            System.out.println("This money to be removed"+money);
+            subtractMoneyParse((int) money);
         }
 
     }
+
+
+
+    public void subtractMoneyParse(final int moneyLost) {
+        final ParseQuery<User> query = ParseQuery.getQuery(User.class);
+        //query.whereEqualTo(User.KEY_USER, ParseUser.getCurrentUser());
+        query.findInBackground(new FindCallback<User>() {
+            @Override
+            public void done(List<User> users, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, " Issue with Login", e);
+                    return;
+                }
+                System.out.println("Parse is being called money " + users);
+                for (User user: users){
+                    int currentMoney = Integer.parseInt(user.getMoney()) - moneyLost;
+                    System.out.println("money To loose: " + Integer.parseInt(user.getMoney()));
+                    user.setMoney(currentMoney);
+
+                }
+
+            }
+
+        });
+
+
+
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-//
-//                  focusTime = data.getFocusTime();
-//                  sleepTime = data.getSleepTime();
-//                  studyTime = data.getStudyTime();
-//                  workTime = data.getWorkTime();
-//                  other = data.getOtherTime();

@@ -187,7 +187,7 @@ public class timerFragment extends Fragment implements AdapterView.OnItemSelecte
             ParseUser currentUser = ParseUser.getCurrentUser();
             Date date = new Date();
 
-            System.out.println("Times up date: " + date +"User: "+currentUser+"label: " +labelText + " time used: " + num);
+            System.out.println("Times up date: " + date +"User: "+currentUser+"label: " +labelText + " time used: " + timeUsed);
             saveData(labelText,currentUser,timeUsed,date);
         }
     }.start();
