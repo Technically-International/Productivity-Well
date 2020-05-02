@@ -22,8 +22,6 @@ public class Statsdata extends ParseObject {
     public int getFocusTime(){
         return getInt(FOCUS_TIME);
     }
-
-
     public int getStudyTime(){
         return getInt(STUDY_TIME);
     }
@@ -33,7 +31,6 @@ public class Statsdata extends ParseObject {
     public int getWorkTime(){
         return getInt(WORK_TIME);
     }
-
     public int getOtherTime(){
         return getInt(OTHER_TIME);
     }
@@ -44,4 +41,32 @@ public class Statsdata extends ParseObject {
     public Date gettDate(){
         return getDate(DATE_USED);
     }
+
+    public void setFocusTime(int focuseTime){
+        put(FOCUS_TIME, focuseTime);
+    }
+    public void setStudyTime(int studyTime){
+        put(STUDY_TIME,studyTime);
+    }
+    public void setSleepTime(int sleepTime){
+        put(SLEEP_TIME,sleepTime);
+    }
+    public void setWorkTime(int workTime){
+        put(WORK_TIME,workTime);
+    }
+    public void setOtherTime(int otherTime){
+        put(OTHER_TIME,otherTime);
+    }
+
+    public void setUser(ParseUser user){
+        put(KEY_USER,user);
+    }
+
+    public void settDate(Date data){
+        put(DATE_USED,data);
+    }
+
+
+
+
 }
