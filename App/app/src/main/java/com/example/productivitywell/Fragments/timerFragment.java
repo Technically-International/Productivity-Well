@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.productivitywell.MainActivity;
 import com.example.productivitywell.R;
 
 import java.lang.reflect.Array;
@@ -34,7 +35,7 @@ import static com.parse.Parse.getApplicationContext;
 public class timerFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     long time = 5;
-    long money=0;
+    public long money=0;
     private CountDownTimer countDownTimer;
     private boolean timerRunning=false;
     private boolean moneyEntered=false;
@@ -121,23 +122,33 @@ public class timerFragment extends Fragment implements AdapterView.OnItemSelecte
             public void onClick(View v) {
                 String moneytext=etAmount.getText().toString();
                 System.out.println("you have eneterd"+moneytext);
-                money=Long.parseLong(moneytext);
-                if(money>=3) {
-                    CircleAngleAnimation animation = new CircleAngleAnimation(circle, 360);
-                    animation.setDuration(time * 60000);
-                    System.out.println(time + "this is time");
-                    circle.startAnimation(animation);
-                    numberPicker.setVisibility(numberPicker.GONE);
-                    countdownText.setVisibility(countdownText.VISIBLE);
-                    startButton.setVisibility(startButton.GONE);
-                    time = time * 60000;
-                    startStop();
-                }
-                else{
+                if (moneytext.length() > 0) {
+                    System.out.println("we are running the wrong code");
+                    money = Long.parseLong(moneytext);
+                    if(money>=3) {
+                        CircleAngleAnimation animation = new CircleAngleAnimation(circle, 360);
+                        animation.setDuration(time * 60000);
+                        System.out.println(time + "this is time");
+                        circle.startAnimation(animation);
+                        numberPicker.setVisibility(numberPicker.GONE);
+                        countdownText.setVisibility(countdownText.VISIBLE);
+                        startButton.setVisibility(startButton.GONE);
+                        time = time * 60000;
+                        MainActivity m = (MainActivity) getActivity();
+                        m.getMoney(money);
+                        startStop();
+                    }
+                    else{
 
-                    Toast.makeText(getApplicationContext(),"Please enter the amount",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Please enter the amount",Toast.LENGTH_SHORT).show();
+                        onViewCreated(view, savedInstanceState);
+                    }
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Please enter an amount",Toast.LENGTH_SHORT).show();
                     onViewCreated(view, savedInstanceState);
                 }
+
 
             }
         });
