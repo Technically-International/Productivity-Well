@@ -11,6 +11,7 @@ public class ParseApplication extends Application {
 
         // Register your parse models
         ParseObject.registerSubclass(Statsdata.class);
+        ParseObject.registerSubclass(User.class);
 
 
         // set applicationId, and server server based on the values in the Heroku settings.
