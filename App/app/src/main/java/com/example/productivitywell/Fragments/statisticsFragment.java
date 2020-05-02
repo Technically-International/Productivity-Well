@@ -146,7 +146,7 @@ public class statisticsFragment extends Fragment {
                     return;
                 }
                 //statisticsFragment statisticsFragment = new statisticsFragment();
-                System.out.println("this is lis of users"+ datas);
+                System.out.println("this is list of users "+ datas);
 
                 for (Statsdata data: datas){
                         Log.e(TAG,"The message is " + data.getFocusTime());
@@ -159,6 +159,7 @@ public class statisticsFragment extends Fragment {
                         SimpleDateFormat sdf = new SimpleDateFormat("E");
                         String DayOfWeek = sdf.format(data.gettDate());
 
+                        System.out.println("other " +data.getOtherTime()+" work " +data.getWorkTime()+" focus " +data.getFocusTime()+" sleep " +data.getSleepTime()+" study "+data.getStudyTime()+" Date: "+data.gettDate());
                         switch(DayOfWeek){
                             case "Sun":
                                 monTime += data.getFocusTime() + data.getSleepTime() + data.getStudyTime() + data.getWorkTime();
