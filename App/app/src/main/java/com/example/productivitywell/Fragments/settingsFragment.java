@@ -1,5 +1,6 @@
 package com.example.productivitywell.Fragments;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.productivitywell.R;
 
@@ -28,7 +33,18 @@ public class settingsFragment extends Fragment {
     public settingsFragment() {
         // Required empty public constructor
     }
-
+    private TextView text_title;
+    private TextView username_heading;
+    private TextView username_content;
+    private TextView email_content;
+    private TextView email_heading;
+    private TextView password_heading;
+    private TextView password_content;
+    private AlertDialog dialog;
+    private Button submit_button;
+    private Button update_button;
+    private ImageView imageView;
+    private EditText editText;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -41,8 +57,8 @@ public class settingsFragment extends Fragment {
     public static settingsFragment newInstance(String param1, String param2) {
         settingsFragment fragment = new settingsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
