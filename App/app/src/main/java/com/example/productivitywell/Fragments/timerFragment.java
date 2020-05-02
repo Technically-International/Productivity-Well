@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,19 @@ import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.productivitywell.R;
+import com.example.productivitywell.Statsdata;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
+import java.io.File;
 import java.lang.reflect.Array;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -36,6 +45,8 @@ public class timerFragment extends Fragment implements AdapterView.OnItemSelecte
     private boolean timerRunning=false;
     private TextView countdownText;
     private Button startButton;
+    private String labelText = "Choose Label";
+    private int timeUsed = 5;
 
     public timerFragment() {
         // Required empty public constructor
@@ -112,6 +123,7 @@ public class timerFragment extends Fragment implements AdapterView.OnItemSelecte
                 CircleAngleAnimation animation = new CircleAngleAnimation(circle, 360);
                 animation.setDuration(num*60000);
                 System.out.println(num+"this is time");
+                timeUsed = (int) num;
                 circle.startAnimation(animation);
                 numberPicker.setVisibility(numberPicker.GONE);
                 countdownText.setVisibility(countdownText.VISIBLE);
@@ -141,7 +153,11 @@ public class timerFragment extends Fragment implements AdapterView.OnItemSelecte
 
         @Override
         public void onFinish() {
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            Date date = new Date();
 
+            System.out.println("Times up date: " + date +"User: "+currentUser+"label: " +labelText + " time used: " + num);
+            saveData(labelText,currentUser,timeUsed,date);
         }
     }.start();
     timerRunning=true;
@@ -166,11 +182,48 @@ public class timerFragment extends Fragment implements AdapterView.OnItemSelecte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        labelText = parent.getItemAtPosition(position).toString();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+
+    private void saveData(String typeLabel, ParseUser currentUser, int timeUsed, Date todaysDate) {
+        Statsdata data = new Statsdata();
+
+        data.settDate(todaysDate);
+        data.setUser(currentUser);
+
+        switch(typeLabel) {
+            case "Choose Label":
+                data.setOtherTime(timeUsed);
+                break;
+            case "Focus":
+                data.setFocusTime(timeUsed);
+                break;
+            case "Study":
+                data.setStudyTime(timeUsed);
+                break;
+            case "Sleep":
+                data.setSleepTime(timeUsed);
+                break;
+            case "Work":
+                data.setWorkTime(timeUsed);
+                break;
+        }
+
+        data.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null){
+                    Log.e("adf", "error while saving", e);
+                    Toast.makeText(getContext(), "Error while saving", Toast.LENGTH_SHORT).show();
+                }
+                Log.i("asdf", "Post save was successful");
+            }
+        });
     }
 }
