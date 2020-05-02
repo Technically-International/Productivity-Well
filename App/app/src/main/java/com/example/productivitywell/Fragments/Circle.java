@@ -51,7 +51,7 @@ public class Circle extends View {
         int x = getWidth()/2;
         int y = getHeight()/2;
 
-        rect.set(x-350, y-350, 350+x, 350+y);
+        rect.set(x-450, y-450, 450+x, 450+y);
 
     }
 

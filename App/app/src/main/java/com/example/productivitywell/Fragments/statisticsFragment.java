@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.productivitywell.Post;
 import com.example.productivitywell.R;
 import com.example.productivitywell.Statsdata;
 import com.github.mikephil.charting.charts.BarChart;
@@ -27,13 +26,11 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 //
@@ -149,6 +146,7 @@ public class statisticsFragment extends Fragment {
                     return;
                 }
                 //statisticsFragment statisticsFragment = new statisticsFragment();
+                System.out.println("this is lis of users"+ datas);
 
                 for (Statsdata data: datas){
                         Log.e(TAG,"The message is " + data.getFocusTime());

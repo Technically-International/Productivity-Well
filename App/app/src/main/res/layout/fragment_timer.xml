@@ -6,21 +6,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.timerFragment">
 
+    
     <EditText
         android:id="@+id/etAmount"
-        android:layout_width="414dp"
-        android:layout_height="50dp"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="-3dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="206dp"
+        android:gravity="center"
         android:hint="Enter Amount"
-        android:textSize="24sp"
+        android:textSize="14sp"
         tools:text="Enter Amount"
-        android:gravity="center"/>
+        android:inputType="number"/>
 
     <Button
         android:id="@+id/startBtn"
@@ -29,13 +31,13 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="296dp"
-        android:layout_marginBottom="74dp"
+        android:layout_marginBottom="63dp"
         android:text="Start" />
 
     <com.example.productivitywell.Fragments.Circle
         android:id="@+id/circle"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:layout_centerInParent="true" />
 
     <TextView
@@ -46,10 +48,31 @@
         android:text="10:00"
         android:textSize="50dp"
         android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/countdownTimer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:text="Money : 50"
+        android:textSize="25dp"
+        android:visibility="visible" />
+
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:id="@+id/numberPicker"/>
+
+    <Spinner
+        android:id="@+id/styleLabel"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="247dp"
+        android:layout_marginTop="87dp"
+        android:textAlignment="center" />
 
 </RelativeLayout>
