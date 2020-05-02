@@ -17,7 +17,6 @@ public class User extends ParseObject {
 
     //username
     public String getUsername(){
-
         return getString(KEY_USERNAME);
     }
 
