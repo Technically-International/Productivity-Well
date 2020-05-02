@@ -2,31 +2,12 @@
     <string name="app_name">ProductivityWell</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string-array name="times">
-        <item>5</item>
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-        <item>25</item>
-        <item>30</item>
-        <item>35</item>
-        <item>40</item>
-        <item>45</item>
-        <item>50</item>
-        <item>55</item>
-        <item>60</item>
-        <item>65</item>
-        <item>70</item>
-        <item>75</item>
-        <item>80</item>
-        <item>85</item>
-        <item>90</item>
-        <item>95</item>
-        <item>100</item>
-        <item>105</item>
-        <item>110</item>
-        <item>115</item>
-        <item>120</item>
+    <string name="typeLabel">Label Spinner</string>
+    <string-array name="typeLabel">
+        <item>Choose Label</item>
+        <item>Focus</item>
+        <item>Study</item>
+        <item>Sleep</item>
+        <item>Work</item>
     </string-array>
 </resources>

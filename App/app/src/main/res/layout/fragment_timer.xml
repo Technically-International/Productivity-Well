@@ -6,21 +6,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.timerFragment">
 
+    
     <EditText
         android:id="@+id/etAmount"
-        android:layout_width="414dp"
-        android:layout_height="50dp"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="-3dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="206dp"
         android:gravity="center"
         android:hint="Enter Amount"
-        android:textSize="24sp"
-        tools:text="Enter Amount" />
+        android:textSize="14sp"
+        tools:text="Enter Amount"
+        android:inputType="number"/>
 
     <Button
         android:id="@+id/startBtn"
@@ -62,5 +64,15 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:id="@+id/numberPicker"/>
+
+    <Spinner
+        android:id="@+id/styleLabel"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="247dp"
+        android:layout_marginTop="87dp"
+        android:textAlignment="center" />
 
 </RelativeLayout>

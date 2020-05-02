@@ -147,6 +147,7 @@ public class statisticsFragment extends Fragment {
                 }
                 //statisticsFragment statisticsFragment = new statisticsFragment();
                 System.out.println("this is lis of users"+ datas);
+
                 for (Statsdata data: datas){
                         Log.e(TAG,"The message is " + data.getFocusTime());
                         focusTime = data.getFocusTime() + focusTime;

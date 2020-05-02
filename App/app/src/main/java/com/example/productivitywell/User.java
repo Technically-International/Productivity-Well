@@ -8,11 +8,10 @@ import com.parse.ParseUser;
 
 @ParseClassName("User")
 public class User extends ParseObject {
-
-    public static final String KEY_USERNAME = "username";
-    public static final String KEY_PASSWORD = "password";
-    public static final String KEY_EMAIL = "email";
-    public static final String KEY_PROFILEPIC = "profilepic";
+    public final String KEY_USERNAME = "username";
+    public final String KEY_PASSWORD = "password";
+    public final String KEY_EMAIL = "email";
+    public final String KEY_PROFILEPIC = "profilepic";
     public static final String KEY_USER = "objectId";
 
     //username

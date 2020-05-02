@@ -11,21 +11,25 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 
 import com.example.productivitywell.R;
 
+import java.lang.reflect.Array;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.parse.Parse.getApplicationContext;
 
 
-public class timerFragment extends Fragment {
+public class timerFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     long num = 5;
     private CountDownTimer countDownTimer;
@@ -59,6 +63,13 @@ public class timerFragment extends Fragment {
         final Circle circle =  view.findViewById(R.id.circle);
         countdownText = view.findViewById(R.id.countdownTimer);
         final NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
+
+        Spinner typeLabels = view.findViewById(R.id.styleLabel);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.typeLabel, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeLabels.setAdapter(adapter);
+        typeLabels.setOnItemSelectedListener(this);
+
 
         //24 different selectable times from 5 to 120 minutes in 5 minute increments
         numberPicker.setMinValue(1);
@@ -151,5 +162,15 @@ public class timerFragment extends Fragment {
         if (seconds<10) timeLeftText+="0";
         timeLeftText+=seconds;
         countdownText.setText(timeLeftText);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

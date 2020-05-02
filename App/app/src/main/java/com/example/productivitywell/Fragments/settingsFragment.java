@@ -96,10 +96,7 @@ public class settingsFragment extends Fragment {
     }
 
     public void queryUser() {
-        System.out.println("This is the beginning if the  function");
         ParseQuery<User> query = ParseQuery.getQuery(User.class);
-        query.whereEqualTo(User.KEY_USERNAME, ParseUser.getCurrentUser());
-        System.out.println("Before queryyyyyyy");
         query.findInBackground(new FindCallback<User>() {
             @Override
             public void done(List<User> users, ParseException e) {
@@ -107,7 +104,8 @@ public class settingsFragment extends Fragment {
                     Log.e(TAG,"issues with getting post", e);
                     return;
                 }
-                Log.i(TAG, " list of users" + users);
+                Log.i(TAG, " current user ID " + User.KEY_USER);
+                Log.i(TAG, " current user ID parse user" + ParseUser.getCurrentUser());
 
                 for (User user: users){
                     Log.i(TAG, " The user name is" + user.getUsername());
@@ -120,5 +118,8 @@ public class settingsFragment extends Fragment {
 
     }
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
 }
