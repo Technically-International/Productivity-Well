@@ -14,13 +14,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="-3dp"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginEnd="0dp"
+        android:gravity="center"
         android:hint="Enter Amount"
         android:textSize="24sp"
-        tools:text="Enter Amount"
-        android:gravity="center"/>
+        tools:text="Enter Amount" />
 
     <Button
         android:id="@+id/startBtn"
@@ -29,13 +29,13 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="296dp"
-        android:layout_marginBottom="74dp"
+        android:layout_marginBottom="63dp"
         android:text="Start" />
 
     <com.example.productivitywell.Fragments.Circle
         android:id="@+id/circle"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:layout_centerInParent="true" />
 
     <TextView
@@ -46,6 +46,17 @@
         android:text="10:00"
         android:textSize="50dp"
         android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/countdownTimer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:text="Money : 50"
+        android:textSize="25dp"
+        android:visibility="visible" />
+
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
