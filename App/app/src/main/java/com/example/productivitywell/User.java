@@ -1,6 +1,4 @@
 package com.example.productivitywell;
-
-
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -8,7 +6,6 @@ import com.parse.ParseUser;
 
 @ParseClassName("User")
 public class User extends ParseObject {
-
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_EMAIL = "email";
@@ -17,6 +14,7 @@ public class User extends ParseObject {
 
     //username
     public String getUsername(){
+        System.out.println(getString(KEY_USERNAME));
         return getString(KEY_USERNAME);
     }
 

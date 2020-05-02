@@ -98,7 +98,7 @@ public class settingsFragment extends Fragment {
     public void queryUser() {
         System.out.println("This is the beginning if the  function");
         ParseQuery<User> query = ParseQuery.getQuery(User.class);
-        query.whereEqualTo(User.KEY_USERNAME, ParseUser.getCurrentUser());
+//        query.whereEqualTo(User.KEY_USERNAME, ParseUser.getCurrentUser());
         System.out.println("Before queryyyyyyy");
         query.findInBackground(new FindCallback<User>() {
             @Override
@@ -111,14 +111,9 @@ public class settingsFragment extends Fragment {
 
                 for (User user: users){
                     Log.i(TAG, " The user name is" + user.getUsername());
-
                 }
-
                 System.out.println(" After the loopAfter the 2 loops in the query");
             }
         });
-
     }
-
-
 }
