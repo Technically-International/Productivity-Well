@@ -77,11 +77,6 @@ public class settingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
         System.out.println(" This is the before the query user");
         queryUser();
         System.out.println(" This is after the query User");
@@ -98,7 +93,7 @@ public class settingsFragment extends Fragment {
     public void queryUser() {
         System.out.println("This is the beginning if the  function");
         ParseQuery<User> query = ParseQuery.getQuery(User.class);
-//        query.whereEqualTo(User.KEY_USERNAME, ParseUser.getCurrentUser());
+        query.whereEqualTo(User.KEY_USERNAME, ParseUser.getCurrentUser());
         System.out.println("Before queryyyyyyy");
         query.findInBackground(new FindCallback<User>() {
             @Override
@@ -110,8 +105,10 @@ public class settingsFragment extends Fragment {
                 Log.i(TAG, " list of users" + users);
 
                 for (User user: users){
-                    Log.i(TAG, " The user name is" + user.getUsername());
+                    Log.i(TAG,"The email is");
+                    Log.i(TAG, " Email is " + user.getUsername());
                 }
+                Log.i(TAG, " list of users after the loop " + users);
                 System.out.println(" After the loopAfter the 2 loops in the query");
             }
         });
