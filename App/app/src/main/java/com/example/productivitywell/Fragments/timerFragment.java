@@ -27,6 +27,12 @@ import static com.parse.Parse.getApplicationContext;
 
 public class timerFragment extends Fragment {
 
+    long num = 5;
+    private CountDownTimer countDownTimer;
+    private boolean timerRunning=false;
+    private TextView countdownText;
+    private Button startButton;
+
     public timerFragment() {
         // Required empty public constructor
     }
@@ -46,18 +52,20 @@ public class timerFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_timer, container, false);
 
     }
-    int num = 5;
+
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final Circle circle =  view.findViewById(R.id.circle);
-        final TextView conutdownTimer = view.findViewById(R.id.countdownTimer);
-
+        countdownText = view.findViewById(R.id.countdownTimer);
         final NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
 
+        //24 different selectable times from 5 to 120 minutes in 5 minute increments
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(24);
 
+
+        //numberpicker listener to update list of numbers according to user input
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -84,19 +92,64 @@ public class timerFragment extends Fragment {
             }
         }, 0, 1000);
 
-        Button startButton = view.findViewById(R.id.startBtn);
 
+
+        startButton = view.findViewById(R.id.startBtn);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CircleAngleAnimation animation = new CircleAngleAnimation(circle, 360);
-                animation.setDuration(num*1000);
+                animation.setDuration(num*60000);
                 System.out.println(num+"this is time");
                 circle.startAnimation(animation);
                 numberPicker.setVisibility(numberPicker.GONE);
-                conutdownTimer.setVisibility(conutdownTimer.VISIBLE);
+                countdownText.setVisibility(countdownText.VISIBLE);
+                num=num*60000;
+                startStop();
 
             }
         });
+    }
+
+    public void startStop() {
+        if(timerRunning){
+            stopTimer();
+        }
+        else {
+            startTimer();
+        }
+    }
+
+    public void startTimer() {
+    countDownTimer = new CountDownTimer(num, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            num = millisUntilFinished;
+            updateTimer();
+        }
+
+        @Override
+        public void onFinish() {
+
+        }
+    }.start();
+    timerRunning=true;
+    }
+
+    public void stopTimer() {
+        //timer can't be stopped so no code here
+        timerRunning=false;
+    }
+    public void updateTimer(){
+        int minutes = (int)num/60000;
+        int seconds = (int)num%60000/1000;
+
+        String timeLeftText;
+
+        timeLeftText=""+minutes;
+        timeLeftText+=":";
+        if (seconds<10) timeLeftText+="0";
+        timeLeftText+=seconds;
+        countdownText.setText(timeLeftText);
     }
 }
