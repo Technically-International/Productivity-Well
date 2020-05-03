@@ -1,28 +1,47 @@
 package com.example.productivitywell.Fragments;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.productivitywell.R;
 import com.example.productivitywell.Statsdata;
 import com.example.productivitywell.User;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
+import java.io.File;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,96 +107,6 @@ public class settingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity.main)
-
-        text_title = view.findViewById(R.id.text_title);
-        username_heading = view.findViewById(R.id.username_heading);
-        username_content = view.findViewById(R.id.username_content);
-        email_heading = view.findViewById(R.id.email_heading);
-        email_content = view.findViewById(R.id.email_content);
-        password_heading = view.findViewById(R.id.password_heading);
-        password_content = view.findViewById(R.id.password_content);
-        submit_button = view.findViewById(R.id.submit_button);
-        update_button = view.findViewById(R.id.update_button);
-        imageView = view.findViewById(R.id.imageView);
-
-
-        dialog= new AlertDialog.Builder(this).create();
-        editText = new EditText(this);
-
-        dialog.setTitle("Edit username here");
-        dialog.setView(editText);
-
-        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener()(
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i){
-                    username_content(editText.getText());
-        }
-    });
-
-        username_content.setOnClickLister (new View.OnClickListener()
-
-    {
-        @Override
-        public void onClick (View view){
-            editText.setText(username_content.getText());
-            dialog.show();
-
-
-    }
-    });
-
-
-    dialog_password= new AlertDialog.Builder(this).create();
-    editText_password = new EditText(this);
-
-        dialog_password.setTitle("Edit username here");
-        dialog_password.setView(editText_password);
-
-        dialog_password.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener()(
-    @Override
-    public void onClick(DialogInterface dialogInterface, int i){
-        password_content(editText_password.getText());
-    }
-});
-
-        password_content.setOnClickLister (new View.OnClickListener()
-
-        {
-@Override
-public void onClick (View view){
-        editText_password.setText(password_content.getText());
-        dialog.show();
-
-
-        }
-        });
-
-
-        dialog_email= new AlertDialog.Builder(this).create();
-        editText_email = new EditText(this);
-
-        dialog_email.setTitle("Edit username here");
-        dialog_email.setView(editText_email);
-
-        dialog_email.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener()(
-@Override
-public void onClick(DialogInterface dialogInterface, int i){
-        email_content(editText_email.getText());
-        }
-        });
-
-        email_content.setOnClickLister (new View.OnClickListener()
-
-        {
-@Override
-public void onClick (View view){
-        editText_email.setText(email_content.getText());
-        dialog.show();
-
-
-        }
-        });
 
 //        if (getArguments() != null) {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
@@ -187,34 +116,7 @@ public void onClick (View view){
 //        queryUser();
 //        System.out.println(" This is after the query User");
 
-
-     update_button.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            launchCamera();
-        }
-    });
-
-        submit_button.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            String username = username_content.toString();
-            String email = email_content.toString();
-            String password = password_content.toString();
-            if (username.isEmpty()) {
-                Toast.makeText( getContext(), "Username cannot be empty", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (photoFile == null || imageView.getDrawable() == null) {
-                Toast.makeText( getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            ParseUser currentUser = ParseUser.getCurrentUser();
-            savePost(username, email, password, currentUser, photoFile);
-        }
-    });
-
-}
+    }
 
     private void launchCamera() {
         // create Intent to take a picture and return control to the calling application
@@ -267,8 +169,8 @@ public void onClick (View view){
         return new File(mediaStorageDir.getPath() + File.separator + fileName);
     }
 
-    private void savePost(String username,String email,String password, ParseUser currentUser, File photoFile) {
-        User user = new User();
+    private void savePost(@NonNull final View view, String username,String email,String password, ParseUser currentUser, File photoFile) {
+        final User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
@@ -279,22 +181,20 @@ public void onClick (View view){
             public void done(ParseException e) {
                 if (e != null) {
                     Log.e(TAG, "Error while saving", e);
-                    Toast.makeText(getContext(),"Error while saving!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
                 }
 
-                Log.i (TAG,"Change was saved successfully");
-                username_content.setText(user.getUser().getUsername);
-                password.setText(user.getPassword);
-                email_content.setText(user.getEmail);
-                //imageView.setImage(user.getProfilepic);
+                Log.i(TAG, "Change was saved successfully");
+                username_content.setText(user.getUser().getUsername());
+                password_content.setText(user.getPassword());
+                email_content.setText(user.getEmail());
+                //imageView.setImage(user.getProfilePic());
                 ParseFile image = user.getProfilepic();
-                if (image != null){
-                Glide.with(context).load(user.getProfilepic().getUrl()).into(imageView);
+                if (image != null) {
+                    Glide.with(view.getContext()).load(user.getProfilepic().getUrl()).into(imageView);
                 }
+            }
         });
-
-    }
-}
     }
 
     @Override
@@ -305,22 +205,126 @@ public void onClick (View view){
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-            super.onViewCreated(view, savedInstanceState);
-            FrameLayout frameSettings = view.findViewById(R.id.frameSettings);
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //view.setContentView(R.layout.activity.main);
 
-            username_content.setText(user.getUser().getUsername);
-            password.setText(user.getPassword);
-            email_content.setText(user.getEmail);
-            imageView.setImage(user.getProfilepic);
+        text_title = view.findViewById(R.id.text_title);
+        username_heading = view.findViewById(R.id.username_heading);
+        username_content = view.findViewById(R.id.username_content);
+        email_heading = view.findViewById(R.id.email_heading);
+        email_content = view.findViewById(R.id.email_content);
+        password_heading = view.findViewById(R.id.password_heading);
+        password_content = view.findViewById(R.id.password_content);
+        submit_button = view.findViewById(R.id.submit_button);
+        update_button = view.findViewById(R.id.upload_button);
+        imageView = view.findViewById(R.id.imageView);
 
-            ParseFile image = user.getProfilepic();
-            if (image != null){
-                Glide.with(context).load(user.getProfilepic().getUrl()).into(imageView);
+
+        dialog = new AlertDialog.Builder(view.getContext()).create();
+        editText = new EditText(view.getContext());
+
+        dialog.setTitle("Edit username here");
+        dialog.setView(editText);
+
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i){
+                username_content.setText(editText.getText());
             }
+        });
+
+        username_content.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick (View view){
+                editText.setText(username_content.getText());
+                dialog.show();
+            }
+        });
+
+        dialog_password= new AlertDialog.Builder(view.getContext()).create();
+        editText_password = new EditText(view.getContext());
+
+        dialog_password.setTitle("Edit username here");
+        dialog_password.setView(editText_password);
+
+        dialog_password.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i){
+                password_content.setText(editText_password.getText());
+            }
+        });
+
+        password_content.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick (View view){
+                editText_password.setText(password_content.getText());
+                dialog.show();
+            }
+        });
 
 
-public void queryUser() {
+        dialog_email= new AlertDialog.Builder(view.getContext()).create();
+        editText_email = new EditText(view.getContext());
+
+        dialog_email.setTitle("Edit username here");
+        dialog_email.setView(editText_email);
+
+        dialog_email.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i){
+                email_content.setText(editText_email.getText());
+            }
+        });
+
+        email_content.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick (View view){
+                editText_email.setText(email_content.getText());
+                dialog.show();
+            }
+        });
+
+        update_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchCamera();
+            }
+        });
+
+        submit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = username_content.toString();
+                String email = email_content.toString();
+                String password = password_content.toString();
+                if (username.isEmpty()) {
+                    Toast.makeText( getContext(), "Username cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (photoFile == null || imageView.getDrawable() == null) {
+                    Toast.makeText( getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                savePost(view, username, email, password, currentUser, photoFile);
+            }
+        });
+
+        FrameLayout frameSettings = view.findViewById(R.id.frameSettings);
+        User user = new User();
+        username_content.setText(user.getUsername());
+        password_content.setText(user.getPassword());
+        email_content.setText(user.getEmail());
+        // imageView.setImage(user.getProfilepic);
+
+        ParseFile image = user.getProfilepic();
+        if (image != null) {
+            Glide.with(view.getContext()).load(user.getProfilepic().getUrl()).into(imageView);
+        }
+    }
+
+    public void queryUser() {
         System.out.println("This is the beginning if the  function");
         ParseQuery<User> query = ParseQuery.getQuery(User.class);
 //        query.whereEqualTo(User.KEY_USERNAME, ParseUser.getCurrentUser());
