@@ -156,7 +156,7 @@ public class settingsFragment extends Fragment {
         return new File(mediaStorageDir.getPath() + File.separator + fileName);
     }
 
-    private void saveUser(@NonNull final View view, String username,String email,String password, File photoFile) {
+    private void saveUser(@NonNull final View view, String username,String email,String password) {
         ParseUser user = User.getCurrentUser();
         user.setUsername(username);
         user.setPassword(password);
@@ -217,7 +217,7 @@ public class settingsFragment extends Fragment {
         dialog.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i){
-                //username_content.setText(editText.getText());
+                username_content.setText(editText.getText());
             }
         });
 
@@ -232,7 +232,7 @@ public class settingsFragment extends Fragment {
         dialog_password= new AlertDialog.Builder(view.getContext()).create();
         editText_password = new EditText(view.getContext());
 
-        dialog_password.setTitle("Edit username here");
+        dialog_password.setTitle("Enter password here");
         dialog_password.setView(editText_password);
 
         dialog_password.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener(){
@@ -245,16 +245,21 @@ public class settingsFragment extends Fragment {
         password_content.setOnClickListener (new View.OnClickListener() {
             @Override
             public void onClick (View view){
-                editText_password.setText(password_content.getText());
+                //editText_password.setText(password_content.getText());
                 dialog.show();
             }
         });
 
 
+
+
+
+
+
         dialog_email= new AlertDialog.Builder(view.getContext()).create();
         editText_email = new EditText(view.getContext());
 
-        dialog_email.setTitle("Edit username here");
+        dialog_email.setTitle("Enter your email here");
         dialog_email.setView(editText_email);
 
         dialog_email.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener() {
@@ -282,18 +287,20 @@ public class settingsFragment extends Fragment {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //String username = username_content.toString();
                 String username = username_content.toString();
                 String email = email_content.toString();
                 String password = password_content.toString();
-                if (username.isEmpty()) {
-                    Toast.makeText( getContext(), "Username cannot be empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (photoFile == null || imageView.getDrawable() == null) {
-                    Toast.makeText( getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                saveUser(view, username, email, password, photoFile);
+//                if (username.isEmpty()) {
+//                    Toast.makeText( getContext(), "Username cannot be empty", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                if (photoFile == null || imageView.getDrawable() == null) {
+//                    Toast.makeText( getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+                //saveUser(view, username, email, password, photoFile);
+                saveUser(view, username, email, password);
             }
         });
 

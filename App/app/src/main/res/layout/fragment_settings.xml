@@ -90,7 +90,7 @@
         android:layout_marginTop="320sp"
         android:clickable="true"
         android:gravity="center"
-        android:text="Jenifidelia"
+        android:text="change password"
         android:textColor="#3F51B5"
         android:textSize="20sp" />
 
