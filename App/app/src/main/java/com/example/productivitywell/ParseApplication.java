@@ -10,8 +10,9 @@ public class ParseApplication extends Application {
         super.onCreate();
 
         // Register your parse models
-        ParseObject.registerSubclass(Statsdata.class);
         ParseObject.registerSubclass(User.class);
+        ParseObject.registerSubclass(Statsdata.class);
+
 
 
         // set applicationId, and server server based on the values in the Heroku settings.

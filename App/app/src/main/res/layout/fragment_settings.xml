@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameSettings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#03A9F4"
     tools:context=".Fragments.settingsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="settings fragment" />
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -31,7 +29,7 @@
 
     <TextView
         android:id="@+id/username_heading"
-        android:layout_width="119dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100sp"
         android:layout_marginTop="240sp"
@@ -66,10 +64,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="210sp"
         android:layout_marginTop="240sp"
+        android:clickable="true"
         android:gravity="center"
         android:text="Jenifidelia"
         android:textColor="#3F51B5"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/email_content"
@@ -77,6 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="210sp"
         android:layout_marginTop="282sp"
+        android:clickable="true"
         android:gravity="center"
         android:text="Jenifidelia"
         android:textColor="#3F51B5"
@@ -88,6 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="210sp"
         android:layout_marginTop="320sp"
+        android:clickable="true"
         android:gravity="center"
         android:text="Jenifidelia"
         android:textColor="#3F51B5"
@@ -97,13 +98,16 @@
         android:id="@+id/upload_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="270sp"
+        android:layout_marginTop="164sp"
         android:text="upload" />
 
     <Button
         android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="120sp"
         android:text="submit" />
 
 </FrameLayout>

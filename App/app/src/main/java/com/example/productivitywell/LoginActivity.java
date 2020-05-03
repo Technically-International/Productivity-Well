@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if (ParseUser.getCurrentUser() != null){
+        if (User.getCurrentUser() != null){
             goMainActivity();
         }
 
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser(String username, String password) {
         Log.i(TAG, "Atempting to login user");
 
-        ParseUser.logInInBackground(username, password, new LogInCallback() {
+        User.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (e != null) {
