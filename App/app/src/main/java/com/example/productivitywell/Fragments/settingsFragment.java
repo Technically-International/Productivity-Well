@@ -73,7 +73,7 @@ public class settingsFragment extends Fragment {
     private TextView password_heading;
     private TextView password_content;
     private Button submit_button;
-    private Button update_button;
+   // private Button update_button;
     private ImageView imageView;
     private File photoFile;
     public String photoFileName = "photo.jpg";
@@ -156,7 +156,7 @@ public class settingsFragment extends Fragment {
         return new File(mediaStorageDir.getPath() + File.separator + fileName);
     }
 
-    private void saveUser(@NonNull final View view, String username,String email,String password, File photoFile) {
+    private void saveUser(@NonNull final View view, String username,String email,String password) {
         ParseUser user = User.getCurrentUser();
         user.setUsername(username);
         user.setPassword(password);
@@ -165,12 +165,12 @@ public class settingsFragment extends Fragment {
         user.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Error while saving", e);
-                    Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
-                }
+               // if (e != null) {
+                   // Log.e(TAG, "Error while saving", e);
+                   // Toast.makeText(getContext(), "Change was saved successfully", Toast.LENGTH_SHORT).show();
 
-                Log.i(TAG, "Change was saved successfully");
+
+//                Log.i(TAG, "Change was saved successfully");
                 //username_content.setText(user.getUser().getUsername());
                 //password_content.setText(user.getPassword());
                 //email_content.setText(user.getEmail());
@@ -203,7 +203,7 @@ public class settingsFragment extends Fragment {
         password_heading = view.findViewById(R.id.password_heading);
         password_content = view.findViewById(R.id.password_content);
         submit_button = view.findViewById(R.id.submit_button);
-        update_button = view.findViewById(R.id.upload_button);
+//        update_button = view.findViewById(R.id.upload_button);
         imageView = view.findViewById(R.id.imageView);
 
         queryUser();
@@ -217,7 +217,8 @@ public class settingsFragment extends Fragment {
         dialog.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i){
-                //username_content.setText(editText.getText());
+                username_content.setText(editText.getText());
+
             }
         });
 
@@ -232,7 +233,7 @@ public class settingsFragment extends Fragment {
         dialog_password= new AlertDialog.Builder(view.getContext()).create();
         editText_password = new EditText(view.getContext());
 
-        dialog_password.setTitle("Edit username here");
+        dialog_password.setTitle("Enter password here");
         dialog_password.setView(editText_password);
 
         dialog_password.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener(){
@@ -245,16 +246,21 @@ public class settingsFragment extends Fragment {
         password_content.setOnClickListener (new View.OnClickListener() {
             @Override
             public void onClick (View view){
-                editText_password.setText(password_content.getText());
+                //editText_password.setText(password_content.getText());
                 dialog.show();
             }
         });
 
 
+
+
+
+
+
         dialog_email= new AlertDialog.Builder(view.getContext()).create();
         editText_email = new EditText(view.getContext());
 
-        dialog_email.setTitle("Edit username here");
+        dialog_email.setTitle("Enter your email here");
         dialog_email.setView(editText_email);
 
         dialog_email.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener() {
@@ -272,28 +278,31 @@ public class settingsFragment extends Fragment {
             }
         });
 
-        update_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchCamera();
-            }
-        });
+//        update_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                launchCamera();
+//            }
+//        });
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), "Change was saved successfully", Toast.LENGTH_SHORT).show();
+                //String username = username_content.toString();
                 String username = username_content.toString();
                 String email = email_content.toString();
                 String password = password_content.toString();
-                if (username.isEmpty()) {
-                    Toast.makeText( getContext(), "Username cannot be empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (photoFile == null || imageView.getDrawable() == null) {
-                    Toast.makeText( getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                saveUser(view, username, email, password, photoFile);
+//                if (username.isEmpty()) {
+//                    Toast.makeText( getContext(), "Username cannot be empty", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                if (photoFile == null || imageView.getDrawable() == null) {
+//                    Toast.makeText( getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+                //saveUser(view, username, email, password, photoFile);
+                saveUser(view, username, email, password);
             }
         });
 
@@ -334,3 +343,5 @@ public class settingsFragment extends Fragment {
         });*/
     }
 }
+
+// testing the commit stuff h
