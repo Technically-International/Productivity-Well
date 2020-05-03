@@ -98,17 +98,17 @@ public class MainActivity extends AppCompatActivity {
     ParseObject user;
     public void subtractMoneyParse(final int moneyLost) {
 
-        System.out.println("This is the beginning if the  function");
-
-        Parse
-
-        String money =  user.get
-
-
-
-        String email = user.getEmail();
-        username_content.setText(username);
-        email_content.setText(email);
+//        System.out.println("This is the beginning if the  function");
+//
+//        Parse
+//
+//        String money =  user.get
+//
+//
+//
+//        String email = user.getEmail();
+//        username_content.setText(username);
+//        email_content.setText(email);
 
 
 
