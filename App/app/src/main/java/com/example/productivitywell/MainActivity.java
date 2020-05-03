@@ -19,7 +19,10 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -90,28 +93,48 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    ParseObject user;
     public void subtractMoneyParse(final int moneyLost) {
-        final ParseQuery<User> query = ParseQuery.getQuery(User.class);
-        //query.whereEqualTo(User.KEY_USER, ParseUser.getCurrentUser());
-        query.findInBackground(new FindCallback<User>() {
-            @Override
-            public void done(List<User> users, ParseException e) {
+
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+
+        //query.whereEqualTo("username","john"); // I'm just putting Beta, but it should be the frat you want (or that the user clicked)
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> userList, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, " Issue with Login", e);
-                    return;
+                    user = userList.get(0); // I'm assuming the first instance should always be the one you work with. In fact, there should only be one instance of each
+                    System.out.println("User: " + user);
+                    user.put("money", 25);
+                    System.out.println("User money: " + user.get("money"));
+                    user.saveInBackground();
+                } else {
+                    System.out.println(e);
                 }
-                System.out.println("Parse is being called money " + users);
-                for (User user: users){
-                    int currentMoney = Integer.parseInt(user.getMoney()) - moneyLost;
-                    System.out.println("money To loose: " + Integer.parseInt(user.getMoney()));
-                    user.setMoney(currentMoney);
-
-                }
-
             }
-
         });
+
+
+
+//        //query.whereEqualTo(User.KEY_USER, ParseUser.getCurrentUser());
+//        query.findInBackground(new FindCallback<ParseObject>() {
+//            @Override
+//            public void done(List<User> users, ParseException e) {
+//                if (e != null) {
+//                    Log.e(TAG, " Issue with Login", e);
+//                    return;
+//                }
+//                System.out.println("Parse is being called money " + users);
+//                for (User user: users){
+//                    int currentMoney = Integer.parseInt(user.getMoney()) - moneyLost;
+//                    System.out.println("money To loose: " + Integer.parseInt(user.getMoney()));
+//                    user.setMoney(currentMoney);
+//
+//                }
+//
+//            }
+//
+//        });
 
 
 
