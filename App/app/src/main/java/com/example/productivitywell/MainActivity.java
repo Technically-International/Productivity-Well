@@ -31,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.example.productivitywell.User;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -96,23 +98,17 @@ public class MainActivity extends AppCompatActivity {
     ParseObject user;
     public void subtractMoneyParse(final int moneyLost) {
 
+        System.out.println("This is the beginning if the  function");
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+        Parse
 
-        //query.whereEqualTo("username","john"); // I'm just putting Beta, but it should be the frat you want (or that the user clicked)
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> userList, ParseException e) {
-                if (e != null) {
-                    user = userList.get(0); // I'm assuming the first instance should always be the one you work with. In fact, there should only be one instance of each
-                    System.out.println("User: " + user);
-                    user.put("money", 25);
-                    System.out.println("User money: " + user.get("money"));
-                    user.saveInBackground();
-                } else {
-                    System.out.println(e);
-                }
-            }
-        });
+        String money =  user.get
+
+
+
+        String email = user.getEmail();
+        username_content.setText(username);
+        email_content.setText(email);
 
 
 
