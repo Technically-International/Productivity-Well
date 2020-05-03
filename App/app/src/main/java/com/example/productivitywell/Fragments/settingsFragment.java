@@ -73,7 +73,7 @@ public class settingsFragment extends Fragment {
     private TextView password_heading;
     private TextView password_content;
     private Button submit_button;
-    private Button update_button;
+   // private Button update_button;
     private ImageView imageView;
     private File photoFile;
     public String photoFileName = "photo.jpg";
@@ -165,12 +165,12 @@ public class settingsFragment extends Fragment {
         user.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Error while saving", e);
-                    Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
-                }
+               // if (e != null) {
+                   // Log.e(TAG, "Error while saving", e);
+                   // Toast.makeText(getContext(), "Change was saved successfully", Toast.LENGTH_SHORT).show();
 
-                Log.i(TAG, "Change was saved successfully");
+
+//                Log.i(TAG, "Change was saved successfully");
                 //username_content.setText(user.getUser().getUsername());
                 //password_content.setText(user.getPassword());
                 //email_content.setText(user.getEmail());
@@ -203,7 +203,7 @@ public class settingsFragment extends Fragment {
         password_heading = view.findViewById(R.id.password_heading);
         password_content = view.findViewById(R.id.password_content);
         submit_button = view.findViewById(R.id.submit_button);
-        update_button = view.findViewById(R.id.upload_button);
+//        update_button = view.findViewById(R.id.upload_button);
         imageView = view.findViewById(R.id.imageView);
 
         queryUser();
@@ -218,6 +218,7 @@ public class settingsFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i){
                 username_content.setText(editText.getText());
+
             }
         });
 
@@ -277,16 +278,17 @@ public class settingsFragment extends Fragment {
             }
         });
 
-        update_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchCamera();
-            }
-        });
+//        update_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                launchCamera();
+//            }
+//        });
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), "Change was saved successfully", Toast.LENGTH_SHORT).show();
                 //String username = username_content.toString();
                 String username = username_content.toString();
                 String email = email_content.toString();
