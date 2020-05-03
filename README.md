@@ -94,7 +94,7 @@ This app also allows users to connect with other users and show off how producti
 * Statistics -> Show user their activity and productivity level summary
  
 ## Wireframes
-<img src="https://github.com/Technically-International/Productivity-Well/blob/master/Images/wireframe.jpg" width="300" height="300">
+<img src="https://imgur.com/bHHI1sJ.jpg" width="300" height="300">
 
 ### [BONUS] Digital Wireframes & Mockups
 
@@ -233,7 +233,9 @@ User
 **Milestone 3 Gifs**
 Finished timer maain page (required story) and  statistics page (optional story)
 
-<img src="https://github.com/Technically-International/Productivity-Well/blob/Tobi/App/app/src/main/res/milestone3.gif" width=250><br>
+<img src="https://imgur.com/RYh6qjA.gif" width=250><br>
 
 **Milestone 4 Gifs**
 Finished the Settings page as the final component of the app
+
+<img src="https://imgur.com/vXlkSMD.gif" width=250><br>
