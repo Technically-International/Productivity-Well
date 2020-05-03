@@ -32,6 +32,7 @@ import com.example.productivitywell.R;
 import com.example.productivitywell.Statsdata;
 import com.example.productivitywell.User;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
@@ -104,20 +105,6 @@ public class settingsFragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//        System.out.println(" This is the before the query user");
-//        queryUser();
-//        System.out.println(" This is after the query User");
-
-    }
-
     private void launchCamera() {
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -169,13 +156,12 @@ public class settingsFragment extends Fragment {
         return new File(mediaStorageDir.getPath() + File.separator + fileName);
     }
 
-    private void savePost(@NonNull final View view, String username,String email,String password, ParseUser currentUser, File photoFile) {
-        final User user = new User();
+    private void saveUser(@NonNull final View view, String username,String email,String password, File photoFile) {
+        ParseUser user = User.getCurrentUser();
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
-        user.setProfilepic(new ParseFile(photoFile));
-        user.setUser(currentUser);
+       // user.setProfilepic(new ParseFile(photoFile));
         user.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -185,14 +171,14 @@ public class settingsFragment extends Fragment {
                 }
 
                 Log.i(TAG, "Change was saved successfully");
-                username_content.setText(user.getUser().getUsername());
-                password_content.setText(user.getPassword());
-                email_content.setText(user.getEmail());
+                //username_content.setText(user.getUser().getUsername());
+                //password_content.setText(user.getPassword());
+                //email_content.setText(user.getEmail());
                 //imageView.setImage(user.getProfilePic());
-                ParseFile image = user.getProfilepic();
-                if (image != null) {
-                    Glide.with(view.getContext()).load(user.getProfilepic().getUrl()).into(imageView);
-                }
+                //ParseFile image = user.getProfilepic();
+                //if (image != null) {
+                //    Glide.with(view.getContext()).load(user.getProfilepic().getUrl()).into(imageView);
+                //}
             }
         });
     }
@@ -220,6 +206,7 @@ public class settingsFragment extends Fragment {
         update_button = view.findViewById(R.id.upload_button);
         imageView = view.findViewById(R.id.imageView);
 
+        queryUser();
 
         dialog = new AlertDialog.Builder(view.getContext()).create();
         editText = new EditText(view.getContext());
@@ -230,7 +217,7 @@ public class settingsFragment extends Fragment {
         dialog.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i){
-                username_content.setText(editText.getText());
+                //username_content.setText(editText.getText());
             }
         });
 
@@ -306,28 +293,29 @@ public class settingsFragment extends Fragment {
                     Toast.makeText( getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(view, username, email, password, currentUser, photoFile);
+                saveUser(view, username, email, password, photoFile);
             }
         });
 
-        FrameLayout frameSettings = view.findViewById(R.id.frameSettings);
-        User user = new User();
-        username_content.setText(user.getUsername());
-        password_content.setText(user.getPassword());
-        email_content.setText(user.getEmail());
-        // imageView.setImage(user.getProfilepic);
-
-        ParseFile image = user.getProfilepic();
-        if (image != null) {
-            Glide.with(view.getContext()).load(user.getProfilepic().getUrl()).into(imageView);
-        }
+        //FrameLayout frameSettings = view.findViewById(R.id.frameSettings);
     }
 
     public void queryUser() {
         System.out.println("This is the beginning if the  function");
-        ParseQuery<User> query = ParseQuery.getQuery(User.class);
-//        query.whereEqualTo(User.KEY_USERNAME, ParseUser.getCurrentUser());
+        ParseUser user = User.getCurrentUser();
+        String username =  user.getUsername();
+        String email = user.getEmail();
+        username_content.setText(username);
+        email_content.setText(email);
+
+        /*ParseFile image = user.getProfilepic();
+        if (image != null) {
+            Glide.with(view.getContext()).load(user.getProfilepic().getUrl()).into(imageView);
+        }*/
+
+        //User.getCurrentUser().getEmail()
+        /*ParseQuery<User> query = ParseQuery.getQuery(User.class);
+        query.whereEqualTo(User.KEY_USERNAME, User.getCurrentUser().getUsername());
         System.out.println("Before queryyyyyyy");
         query.findInBackground(new FindCallback<User>() {
             @Override
@@ -343,6 +331,6 @@ public class settingsFragment extends Fragment {
                 }
                 System.out.println(" After the loopAfter the 2 loops in the query");
             }
-        });
+        });*/
     }
 }

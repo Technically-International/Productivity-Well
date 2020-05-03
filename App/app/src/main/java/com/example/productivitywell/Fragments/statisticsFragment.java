@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.productivitywell.R;
 import com.example.productivitywell.Statsdata;
+import com.example.productivitywell.User;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -137,7 +138,7 @@ public class statisticsFragment extends Fragment {
 
     public void queryStats(final View view) {
         ParseQuery<Statsdata> query = ParseQuery.getQuery(Statsdata.class);
-        query.whereEqualTo(Statsdata.KEY_USER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Statsdata.KEY_USER, User.getCurrentUser());
         query.findInBackground(new FindCallback<Statsdata>() {
             @Override
             public void done(List<Statsdata> datas, ParseException e) {
@@ -146,7 +147,6 @@ public class statisticsFragment extends Fragment {
                     return;
                 }
                 //statisticsFragment statisticsFragment = new statisticsFragment();
-
                 for (Statsdata data: datas){
                         Log.e(TAG,"The message is " + data.getFocusTime());
                         focusTime = data.getFocusTime() + focusTime;
@@ -190,6 +190,7 @@ public class statisticsFragment extends Fragment {
                 System.out.println("this is sun time "+ sunTime);
 
             }
+
 
         });
 

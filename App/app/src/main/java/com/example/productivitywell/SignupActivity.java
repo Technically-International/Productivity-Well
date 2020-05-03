@@ -29,7 +29,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        if (ParseUser.getCurrentUser() != null){
+        if (User.getCurrentUser() != null){
             goMainActivity();
         }
         etEmail = findViewById(R.id.etEmail);
@@ -50,7 +50,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void signUpUser(String email, String username, String password){
         // Create the ParseUser
-        ParseUser user = new ParseUser();
+        User user = new User();
         // Set core properties
         user.setEmail(email);
         user.setUsername(username);
