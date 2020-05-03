@@ -35,19 +35,32 @@ This app also allows users to connect with other users and show off how producti
 * [x] ~~user must be able to sign in~~
 * [x] ~~Stats UI must have a pie and line chart~~
 * [x] ~~Main UI must be completed.~~
-* Settings page UI must be completed.
-* user can set the amount that should be deducted if target not met.(if they close the app before done)
+* [x] ~~Settings page UI must be completed.~~ 
+* [x] <strike>Finish the settings backend (user able to change their username in settings)</strike> 
 * [x] ~~user can set a timer~~
-* minimum 50 cents for money taken
 
 **Optional Nice-to-have Stories**
+* user can set the amount that should be deducted if target not met.(if they close the app before done)
+* minimum 50 cents for money taken
 * User can compare their progress with other app users
 * Do not disturb mode: cancel texts and phone calls
-* Result analysis (stats: hours, and money spent)
+* [x] ~~Result analysis (stats: hours, and money spent)~~[x]
 * Choose the non-profit organization
 * Time recommendation: 20 minutes with 10 minute breaks
 * User can pause the app.
 * User can select what non profit they want their money to go if they fail  to complete the task.
+
+** Unit 11: Next week Sprint: 
+* Connect the app to the database using Parse, so as to collect information about app usage. **Liberty and Tobi**
+* Finish the Settings UI **Jennifer**
+* Finish the Timer **Nathan**
+
+** Unit 12: Next week Sprint: 
+* Finish the Settings backend (user able to change username in settings) **Jennifer**
+
+** Unit 13: Next week Sprint: 
+* Create the narrated walkthrough of the apps
+* Add final touch ups on the app
 
 ### 2. Screen Archetypes
 
@@ -78,6 +91,7 @@ This app also allows users to connect with other users and show off how producti
 * Login Page -> Account creation if no login is available
 * Timer Page -> Start timer and choose the amount of money that would be sent if the app is closed/run in background etc.
 * Settings Page -> Toggle Settings
+* Statistics -> Show user their activity and productivity level summary
  
 ## Wireframes
 <img src="https://github.com/Technically-International/Productivity-Well/blob/master/Images/wireframe.jpg" width="300" height="300">
@@ -207,12 +221,19 @@ User
    - (Create/POST) Create a new password for user
    
    ### User Runthroughs:
-   - Sign Up and Login Functionality
    
+   - Sign Up and Login Functionality
    
 <img src="https://imgur.com/IteW2Gy.gif" width=250><br>
 
--Main and Stats UI
-
+-Main and Stats UI 
 
 <img src="https://imgur.com/7PXzJZ7.gif" width=250><br>
+
+**Milestone 3 Gifs**
+Finished timer maain page (required story) and  statistics page (optional story)
+
+<img src="https://github.com/Technically-International/Productivity-Well/blob/Tobi/App/app/src/main/res/milestone3.gif" width=250><br>
+
+**Milestone 4 Gifs**
+Finished the Settings page as the final component of the app
