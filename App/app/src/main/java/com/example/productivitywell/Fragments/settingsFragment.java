@@ -343,3 +343,5 @@ public class settingsFragment extends Fragment {
         });*/
     }
 }
+
+// testing the commit stuff
