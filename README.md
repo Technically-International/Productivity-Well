@@ -242,5 +242,4 @@ Finished the Settings page as the final component of the app
 
 <img src="https://imgur.com/vXlkSMD.gif" width=250><br>
 
-<img src="https://j.gifs.com/1WvGp3.gif" width=250><br>
 
