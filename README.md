@@ -241,3 +241,6 @@ Finished timer maain page (required story) and  statistics page (optional story)
 Finished the Settings page as the final component of the app
 
 <img src="https://imgur.com/vXlkSMD.gif" width=250><br>
+
+<img src="Prodwell_finalgif.mp4" width=250><br>
+
