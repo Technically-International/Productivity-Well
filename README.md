@@ -242,5 +242,5 @@ Finished the Settings page as the final component of the app
 
 <img src="https://imgur.com/vXlkSMD.gif" width=250><br>
 
-<img src="Prodwell_finalgif.mp4" width=250><br>
+<img src="<iframe src='//gifs.com/embed/prodwell-gif-1WvGp3' frameborder='0' scrolling='no' width='666px' height='1440px' style='-webkit-backface-visibility: hidden;-webkit-transform: scale(1);' ></iframe>" width=250><br>
 
