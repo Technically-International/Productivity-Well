@@ -1,6 +1,3 @@
-Group Project - README Template
-===
-
 # Productivity Well
 
 ## Disclaimer!! the branch 'Tobi' is our master branch
